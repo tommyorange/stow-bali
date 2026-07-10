@@ -57,6 +57,22 @@ function Facility({ stage }) {
           </div>
         </div>
       </Section>
+      <Section pad="0 32px 88px">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }} className="stow-3col">
+          {[
+            { src: window.StowKit.PHOTOS.corridor, alt: 'Unit rows at dusk', cap: 'Wide, lit rows — easy to move through' },
+            { src: window.StowKit.PHOTOS.gate, alt: 'Gated entrance', cap: 'Gated entry, monitored access' },
+            { src: window.StowKit.PHOTOS.unit, alt: 'Open storage unit with boxes and a surfboard', cap: 'Inside a unit — insulated and ventilated' },
+          ].map((p) => (
+            <figure key={p.cap} style={{ margin: 0 }}>
+              <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: 'var(--shadow-md)', aspectRatio: '4 / 3.4' }}>
+                <img src={p.src} alt={p.alt} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <figcaption style={{ marginTop: 12, fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-500)' }}>{p.cap}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </Section>
       <Section bg="var(--cream-050)" bordered pad="88px 32px">
         <div style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: 56, alignItems: 'center' }} className="stow-2col">
           <div>
