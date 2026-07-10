@@ -1,0 +1,97 @@
+/* ============================================================
+   STOW — Color tokens
+   Premium challenger. Indigo is the base and dominant brand
+   color; Gold is an antique trim/detail accent (never a field);
+   Cream is the reversed-type / paper light; Ink anchors text.
+   No green as a brand or decorative color (keeps STOW separate
+   from the BAU charcoal/jade system) — green is functional
+   form-status only.
+   ============================================================ */
+:root {
+  /* ---- Brand core ---- */
+  --indigo:        #1A2A52;  /* primary — signage, surfaces, dominant */
+  --ink:           #14171E;  /* text / deepest surfaces */
+  --gold:          #C7A14A;  /* accent — antique gold, trim/detail only */
+  --cream:         #F3EEE1;  /* reversed type on indigo / light paper */
+  --white:         #FFFFFF;
+
+  /* ---- Indigo ramp (deep navy indigo) ---- */
+  --indigo-900:    #0C1430;  /* deepest */
+  --indigo-800:    #11203F;
+  --indigo-700:    #0E1A33;  /* pressed / deep */
+  --indigo-600:    #142340;  /* hover */
+  --indigo-500:    #1A2A52;  /* base */
+  --indigo-300:    #6E7CA3;  /* tint */
+  --indigo-100:    #D3D9E6;  /* wash */
+  --indigo-050:    #EDEFF5;  /* faint wash */
+
+  /* ---- Ink ramp ---- */
+  --ink-900:       #0C0E13;
+  --ink-800:       #14171E;  /* base text */
+  --ink-700:       #21242E;
+  --ink-600:       #383C48;
+  --ink-500:       #585D6C;  /* muted text */
+  --ink-400:       #858A99;  /* placeholder / disabled */
+  --ink-300:       #B6BAC5;  /* hairline on dark text */
+
+  /* ---- Cream ramp (warm paper neutrals) ---- */
+  --cream-050:     #FAF7EF;
+  --cream-100:     #F3EEE1;  /* base paper */
+  --cream-200:     #E7E0CE;  /* dividers / fills */
+  --cream-300:     #D6CDB6;  /* borders */
+  --cream-400:     #BFB498;
+
+  /* ---- Gold ramp (antique / muted — accent only) ---- */
+  --gold-700:      #997632;  /* deep / pressed trim */
+  --gold-600:      #B08B3A;  /* hover on gold */
+  --gold-500:      #C7A14A;  /* base accent */
+  --gold-300:      #DBC084;  /* tint */
+  --gold-100:      #EFE6CC;  /* faint wash — sparingly */
+
+  /* ---- Semantic status (functional only — never brand/decorative) ---- */
+  --success:       #2F855A;  /* muted, functional validation only */
+  --success-wash:  #E4F0E9;
+  --warning:       #C98A12;  /* distinct from gold accent */
+  --warning-wash:  #F7ECD3;
+  --danger:        #C4413F;
+  --danger-wash:   #F7E2E1;
+  --info:          var(--indigo-500);
+  --info-wash:     var(--indigo-050);
+
+  /* ============================================================
+     Semantic aliases — reference these in components
+     ============================================================ */
+  /* Surfaces */
+  --surface-page:      var(--cream-100);
+  --surface-raised:    var(--white);
+  --surface-card:      var(--white);
+  --surface-sunken:    var(--cream-200);
+  --surface-inverse:   var(--indigo-500);
+  --surface-brand:     var(--indigo-500);
+  --surface-accent:    var(--gold-500);  /* trim/detail use only */
+
+  /* Text */
+  --text-strong:       var(--ink-900);
+  --text-body:         var(--ink-800);
+  --text-muted:        var(--ink-500);
+  --text-subtle:       var(--ink-400);
+  --text-on-indigo:    var(--cream-100);  /* reversed type is cream */
+  --text-on-ink:       var(--cream-100);
+  --text-on-gold:      var(--ink-900);
+  --text-brand:        var(--indigo-500);
+  --text-link:         var(--indigo-600);
+  --text-gold:         var(--gold-600);
+
+  /* Borders / lines */
+  --border-soft:       var(--cream-200);
+  --border:            var(--cream-300);
+  --border-strong:     var(--ink-800);
+  --border-brand:      var(--indigo-500);
+  --border-gold:       var(--gold-500);  /* trim line */
+  --focus-ring:        var(--indigo-500);
+
+  /* Action */
+  --action-primary:        var(--indigo-500);
+  --action-primary-hover:  var(--indigo-600);
+  --action-primary-press:  var(--indigo-700);
+}

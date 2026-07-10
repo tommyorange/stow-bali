@@ -1,0 +1,78 @@
+/* ============================================================
+   STOW — Typography tokens
+   Display: Archivo 800, expanded (font-stretch 112%), tight
+   tracking -0.03em. Body: 400/500. Labels: 600 UPPERCASE,
+   tracked 0.16em.
+   ============================================================ */
+:root {
+  /* Families (declared in fonts.css) */
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Weights */
+  --fw-regular: 400;   /* @kind font */
+  --fw-medium:  500;   /* @kind font */
+  --fw-semibold: 600;  /* @kind font */
+  --fw-bold:    700;   /* @kind font */
+  --fw-display: 800;   /* @kind font */
+
+  /* Display width (the expanded STOW setting) */
+  --display-stretch: 112%;  /* @kind font */
+
+  /* Tracking */
+  --track-display: -0.03em;  /* @kind font */
+  --track-tight:   -0.015em; /* @kind font */
+  --track-normal:  0;        /* @kind font */
+  --track-label:   0.16em;   /* @kind font */
+
+  /* Type scale (px) */
+  --fs-display-2xl: 88px;
+  --fs-display-xl:  64px;
+  --fs-display-lg:  48px;
+  --fs-h1:          38px;
+  --fs-h2:          30px;
+  --fs-h3:          24px;
+  --fs-h4:          20px;
+  --fs-body-lg:     18px;
+  --fs-body:        16px;
+  --fs-body-sm:     14px;
+  --fs-caption:     13px;
+  --fs-label:       12px;
+
+  /* Line heights */
+  --lh-display:  0.96;  /* @kind font */
+  --lh-tight:    1.08;  /* @kind font */
+  --lh-snug:     1.25;  /* @kind font */
+  --lh-body:     1.55;  /* @kind font */
+}
+
+/* ---- Reusable type primitives ---- */
+.stow-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-stretch: var(--display-stretch);
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+.stow-heading {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-stretch: 100%;
+  letter-spacing: var(--track-tight);
+  line-height: var(--lh-tight);
+}
+.stow-body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--track-normal);
+  line-height: var(--lh-body);
+}
+.stow-label {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1;
+}
