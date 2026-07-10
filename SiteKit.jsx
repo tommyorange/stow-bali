@@ -107,8 +107,14 @@ function ImgPlaceholder({ label = 'FACILITY PHOTO', note = 'premium · limestone
   );
 }
 
-/* ---- Facility photo (real render) ---- */
-function FacilityImage({ src = './assets/hero-facility-night.png', caption = 'Kesiman Kertalangu · Denpasar', badge = 'Opening 【OPEN_DATE】', radius = 28, style }) {
+/* ---- Facility photos (real renders) ---- */
+const PHOTOS = {
+  hero: './assets/photo-side-elevation.png',
+  corridor: './assets/photo-corridor.png',
+  gate: './assets/photo-entrance-gate.png',
+  unit: './assets/photo-open-unit.png',
+};
+function FacilityImage({ src = PHOTOS.hero, caption = 'Kesiman Kertalangu · Denpasar', badge = 'Opening 【OPEN_DATE】', radius = 28, style }) {
   const { Badge } = window.StowKit;
   return (
     <div style={{ position: 'relative', borderRadius: radius, overflow: 'hidden', boxShadow: 'var(--shadow-lg)', ...style }}>
@@ -152,7 +158,11 @@ function TrustRow({ onDark = false }) {
 /* ---- Language switcher (EN / ID / JP) — UI only, persists choice ---- */
 function LangSwitcher({ onDark = false }) {
   const [lang, setLang] = React.useState(() => { try { return localStorage.getItem('stow_lang') || 'EN'; } catch (e) { return 'EN'; } });
-  const pick = (l) => { setLang(l); try { localStorage.setItem('stow_lang', l); } catch (e) {} };
+  const pick = (l) => {
+    setLang(l);
+    try { localStorage.setItem('stow_lang', l); } catch (e) {}
+    try { window.dispatchEvent(new CustomEvent('stow-lang', { detail: l })); } catch (e) {}
+  };
   const base = onDark ? 'rgba(243,238,225,0.55)' : 'var(--ink-400)';
   const on = onDark ? 'var(--cream-100)' : 'var(--indigo-600)';
   const bg = onDark ? 'rgba(243,238,225,0.14)' : 'var(--cream-200)';
@@ -363,6 +373,6 @@ Object.assign(window, { StowKitLoader: () => null });
 window.StowKit = {
   Button, Input, Badge, Card, Stat, Accordion,
   go, ctaLabel, display, eyebrowStyle, bodyStyle,
-  Eyebrow, SMark, Wordmark, Icon, Section, UnitGrid, ImgPlaceholder, FacilityImage, TrustRow, LangSwitcher,
+  Eyebrow, SMark, Wordmark, Icon, Section, UnitGrid, ImgPlaceholder, FacilityImage, PHOTOS, TrustRow, LangSwitcher,
   Header, Footer, CtaBand, WaitlistForm, WaitlistBand, NAV,
 };
