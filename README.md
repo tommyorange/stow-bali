@@ -10,26 +10,20 @@ push it to GitHub and point Vercel (or Netlify / GitHub Pages) at it.
 - Routing is client-side via URL hashes (`#/pricing`, `#/contact`, …), so no
   server rewrites/redirect config is needed — every route works from
   `index.html`.
-- Connected to `stowbali/stow-bali` on Vercel. Pushes to `main` trigger a
-  production deploy.
 
 ## Before / after going live
 
 1. **`site-config.js`** — fill in the real values (open date, hours, address,
    WhatsApp, email, phone, security spec). Keys left `null` show as visible
-   `【KEY】` placeholders on the page, so it's obvious what's missing. Still
-   open — needs real launch facts from Aaron.
+   `【KEY】` placeholders on the page, so it's obvious what's missing.
 2. **`index.html`** — replace `https://REPLACE-WITH-DOMAIN` in the `og:image`
    meta tag with the real domain (social previews need an absolute URL).
-   Still open — needs the real domain once one is chosen.
 3. **Waitlist form** — the form in `SiteKit.jsx` (`WaitlistForm`) currently
    only simulates submission. Wire it to a real endpoint (Formspree, a Vercel
-   serverless function, or the team's CRM). Still open.
-4. **Fonts** — DONE. Archivo is self-hosted in `fonts/archivo/` (variable
-   width axis confirmed present, verified against a live Chrome fetch of
-   Google's own CSS). Noto Sans JP intentionally still loads from Google
-   (124 unicode-range chunks — not worth self-hosting by hand). See
-   `tokens/fonts.css` for details.
+   serverless function, or the team's CRM).
+4. **Fonts** — currently loaded from Google Fonts via `tokens/fonts.css`.
+   A separate task brief exists to self-host them ("Font Self-Hosting
+   Handoff") — apply it in this folder's `tokens/fonts.css`.
 
 ## What's in here
 
@@ -40,8 +34,6 @@ push it to GitHub and point Vercel (or Netlify / GitHub Pages) at it.
 - `styles.css` + `tokens/` — the STOW design tokens (colors, type, spacing…)
 - `_ds_bundle.js` — compiled STOW component library (Button, Card, Modal, …)
 - `assets/` — hero render, favicons, app icons, OG share image
-- `fonts/archivo/` — self-hosted Archivo variable font (6 files, ~434KB)
-- `fetch-archivo-fonts.ps1` — re-run if these fonts ever need refreshing
 
 ## Known architecture caveat (fine for launch, improve later)
 
