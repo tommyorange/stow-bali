@@ -6,8 +6,8 @@
    ============================================================ */
 :root {
   /* Families (declared in fonts.css) */
-  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Archivo', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Archivo', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Weights */
   --fw-regular: 400;   /* @kind font */
