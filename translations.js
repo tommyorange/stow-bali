@@ -32,7 +32,7 @@ window.StowI18N = (() => {
     'Clean, secure, insulated self storage — built for Kesiman Kertalangu, Bali.': { ID: 'Self storage bersih, aman, berinsulasi — dibangun untuk Kesiman Kertalangu, Bali.', JP: '清潔・安全・断熱のセルフストレージ。Kesiman Kertalangu, Bali.' },
 
     /* ---- CTA band (site-wide) ---- */
-    'Store it. Sorted': { ID: 'Simpan. Beres', JP: '預けて、スッキリ' },
+    'Store it. Sorted': { ID: 'Simpan. Beres', JP: '頸けて、スッキリ' },
     'Clean, secure, insulated and ventilated storage in Kesiman Kertalangu. Join the waitlist and lock in your unit before we open.': { ID: 'Penyimpanan bersih, aman, berinsulasi dan berventilasi di Kesiman Kertalangu. Gabung daftar tunggu dan amankan unit Anda sebelum kami buka.', JP: '清潔・安全・断熱・換気完備のストレージ。オープン前にウェイトリストでユニットを確保しましょう。' },
 
     /* ---- Home ---- */
@@ -49,7 +49,7 @@ window.StowI18N = (() => {
     'Business storage': { ID: 'Penyimpanan bisnis', JP: '法人向けストレージ' },
     'Why STOW': { ID: 'Kenapa STOW', JP: 'STOWが選ばれる理由' },
     'Storage you can actually trust.': { ID: 'Penyimpanan yang benar-benar bisa dipercaya.', JP: '本当に信頼できる収納を。' },
-    'Bali is hard on stored belongings — humidity, heat, damp. STOW is built to protect against all three.': { ID: 'Bali keras terhadap barang simpanan — lembap, panas, basah. STOW dibangun untuk melindungi dari ketiganya.', JP: '湿気、暮さ、カビ——バリの気候は保管物の大敵です。STOWはその全てから守るために作られました。' },
+    'Bali is hard on stored belongings — humidity, heat, damp. STOW is built to protect against all three.': { ID: 'Bali keras terhadap barang simpanan — lembap, panas, basah. STOW dibangun untuk melindungi dari ketiganya.', JP: '湿気、暑さ、カビ——バリの気候は保管物の大敌です。STOWはその全てから守るために作られました。' },
     'How it works': { ID: 'Cara kerjanya', JP: 'ご利用の流れ' },
     'Three steps.': { ID: 'Tiga langkah.', JP: '3ステップ。' },
     'Pick your size': { ID: 'Pilih ukuran', JP: 'サイズを選ぶ' },
@@ -61,7 +61,7 @@ window.StowI18N = (() => {
     'See how it works': { ID: 'Lihat cara kerjanya', JP: '流れを見る' },
     'Pricing': { ID: 'Harga', JP: '料金' },
     'Clear pricing. No surprises.': { ID: 'Harga jelas. Tanpa kejutan.', JP: '明朗会計。追加費用なし。' },
-    'Units from lockers up to whole-home rooms. One monthly rate, everything included.': { ID: 'Dari loker hingga unit sebesar rumah. Satu tarif bulanan, semua termasuk.', JP: 'ロッカーから一軍家サイズまで。月額一律、すべて込み。' },
+    'Units from lockers up to whole-home rooms. One monthly rate, everything included.': { ID: 'Dari loker hingga unit sebesar rumah. Satu tarif bulanan, semua termasuk.', JP: 'ロッカーから一軌家サイズまで。月額一律、すべて込み。' },
     'We open 【OPEN_DATE】. Be first in.': { ID: 'Kami buka 【OPEN_DATE】. Jadilah yang pertama.', JP: '【OPEN_DATE】オープン。最初の一人に。' },
 
     /* ---- trust row ---- */
@@ -109,9 +109,9 @@ window.StowI18N = (() => {
     'Extra large': { ID: 'Ekstra besar', JP: '特大' },
     'A few boxes, bags, documents': { ID: 'Beberapa kotak, tas, dokumen', JP: '箱数個、バッグ、書類' },
     'One room of furniture, ~studio': { ID: 'Perabot satu kamar, ~studio', JP: '1部屋分の家具（スタジオ程度）' },
-    '1–2 bedrooms, business stock': { ID: '1–2 kamar tidur, stok bisnis', JP: '1〜2寢室分、事業在庫' },
-    'Full household, bulk inventory': { ID: 'Seisi rumah, inventaris besar', JP: '一軍分の家財、大量在庫' },
-    'Whole home + vehicle-scale goods': { ID: 'Seluruh rumah + barang seukuran kendaraan', JP: '家一軍分＋大型品' },
+    '1–2 bedrooms, business stock': { ID: '1–2 kamar tidur, stok bisnis', JP: '1〜2寝室分、事業在庫' },
+    'Full household, bulk inventory': { ID: 'Seisi rumah, inventaris besar', JP: '一軌分の家財、大量在庫' },
+    'Whole home + vehicle-scale goods': { ID: 'Seluruh rumah + barang seukuran kendaraan', JP: '家一軌分＋大型品' },
     ' /mo': { ID: '/bln', JP: '/月' },
     'Enquire': { ID: 'Tanya', JP: '問い合わせ' },
     'All rates are monthly, billed in IDR.': { ID: 'Semua tarif bulanan, ditagih dalam IDR.', JP: '料金はすべて月額、IDR建てです。' },
@@ -119,7 +119,7 @@ window.StowI18N = (() => {
     'Minimum term: 1 month. No long lock-in.': { ID: 'Minimal 1 bulan. Tanpa kontrak panjang.', JP: '最低契約は1ヶ月。長期縛りなし。' },
     'Size guide': { ID: 'Panduan ukuran', JP: 'サイズガイド' },
     'Not sure what you need?': { ID: 'Belum yakin butuh yang mana?', JP: 'どのサイズか迷ったら' },
-    'A quick guide. A Locker holds what fits in a car boot. A Small unit takes a studio\'s worth of furniture. A Medium fits one to two bedrooms. Large and Extra large hold a full house. Tell us what you\'re storing and we\'ll confirm the fit before you commit.': { ID: 'Panduan singkat. Loker memuat isi bagasi mobil. Unit Kecil memuat perabot studio. Sedang untuk 1–2 kamar. Besar dan Ekstra besar memuat seisi rumah. Beri tahu kami apa yang Anda simpan dan kami pastikan ukurannya sebelum Anda berkomitmen.', JP: 'かんたんガイド：ロッカーは車のトランク程度、小はスタジオ1部屋分の家具、中は1〜2寢室分、大・特大は家一軍分。保管する物を教えていただければ、契約前にぴったりのサイズをご案内します。' },
+    'A quick guide. A Locker holds what fits in a car boot. A Small unit takes a studio\'s worth of furniture. A Medium fits one to two bedrooms. Large and Extra large hold a full house. Tell us what you\'re storing and we\'ll confirm the fit before you commit.': { ID: 'Panduan singkat. Loker memuat isi bagasi mobil. Unit Kecil memuat perabot studio. Sedang untuk 1–2 kamar. Besar dan Ekstra besar memuat seisi rumah. Beri tahu kami apa yang Anda simpan dan kami pastikan ukurannya sebelum Anda berkomitmen.', JP: 'かんたんガイド：ロッカーは車のトランク程度、小はスタジオ1部屋分の家具、中は1〜2寝室分、大・特大は家一軌分。保管する物を教えていただければ、契約前にぴったりのサイズをご案内します。' },
 
     /* ---- Contact page ---- */
     'Contact · Join the waitlist': { ID: 'Kontak · Gabung daftar tunggu', JP: 'お問い合わせ · ウェイトリスト' },
