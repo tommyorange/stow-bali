@@ -216,19 +216,19 @@ function Header({ stage = 'waitlist', current = '#/' }) {
         </div>
       </div>
       {menu && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 60, background: 'var(--indigo-500)', display: 'flex', flexDirection: 'column', padding: '28px 32px', animation: 'stowFade var(--dur) var(--ease)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh', zIndex: 60, background: 'var(--indigo-500)', display: 'flex', flexDirection: 'column', animation: 'stowFade var(--dur) var(--ease)' }}>
+          <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76, padding: '0 24px', borderBottom: '1px solid rgba(243,238,225,0.14)' }}>
             <Wordmark size={24} color="var(--cream-100)" dot="var(--gold-500)" />
-            <button onClick={() => setMenu(false)} aria-label="Close" style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: 6 }}>
+            <button onClick={() => setMenu(false)} aria-label="Close" style={{ display: 'inline-flex', border: 'none', background: 'transparent', cursor: 'pointer', padding: 6 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cream-100)" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
             </button>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 40 }}>
+          <nav style={{ flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 2, padding: '20px 24px' }}>
             {[{ label: 'Home', route: '#/' }, ...NAV, { label: 'FAQ', route: '#/faq' }, { label: 'About', route: '#/about' }].map((n) => (
-              <a key={n.route} href={n.route} onClick={() => setMenu(false)} style={{ ...display(30, 'var(--cream-100)'), padding: '10px 0', textDecoration: 'none' }}>{n.label}</a>
+              <a key={n.route} href={n.route} onClick={() => setMenu(false)} style={{ ...display(24, current === n.route ? 'var(--gold-500)' : 'var(--cream-100)'), padding: '11px 0', textDecoration: 'none' }}>{n.label}</a>
             ))}
-          </div>
-          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 18 }}>
+          </nav>
+          <div style={{ flex: 'none', display: 'flex', flexDirection: 'column', gap: 14, padding: '20px 24px', borderTop: '1px solid rgba(243,238,225,0.14)' }}>
             <LangSwitcher onDark />
             <Button variant="gold" size="lg" block onClick={() => { setMenu(false); go('#/contact'); }}>{ctaLabel(stage)}</Button>
           </div>
