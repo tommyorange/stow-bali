@@ -241,7 +241,7 @@ function Pricing({ stage, showRates }) {
           <Icon name="clock" size={16} color="var(--gold-700)" />
           <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 13.5, color: 'var(--gold-700)' }}>Sizes &amp; rates shown are indicative — final numbers confirmed at launch (v6 model).</span>
         </div>
-        <div style={{ overflowX: 'auto' }}>
+        <div className="stow-price-table-wrap" style={{ overflowX: 'auto' }}>
           <table className="stow-price-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--ink-800)' }}>
@@ -265,6 +265,23 @@ function Pricing({ stage, showRates }) {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="stow-price-cards" style={{ display: 'none', flexDirection: 'column', gap: 12 }}>
+          {UNITS.map((u, i) => (
+            <div key={u.name} onClick={() => setActive(i)} style={{ border: `1px solid ${active === i ? 'var(--indigo-300)' : 'var(--border-soft)'}`, background: active === i ? 'var(--indigo-050)' : 'var(--cream-050)', borderRadius: 14, padding: '18px 18px 20px', cursor: 'pointer', transition: 'all var(--dur) var(--ease)' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, letterSpacing: '-0.01em', fontSize: 21, color: 'var(--ink-900)' }}>{u.name}</span>
+              {showRates
+                ? <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontStretch: '112%', letterSpacing: '-0.02em', fontSize: 22, color: 'var(--ink-900)', whiteSpace: 'nowrap' }}>{u.rate}<span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 13, color: 'var(--ink-400)' }}> /mo</span></span>
+                : <Button variant="secondary" size="sm" onClick={(e) => { e.stopPropagation(); go('#/contact'); }}>Enquire</Button>}
+            </div>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 6 }}>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 14, color: 'var(--ink-700)' }}>{u.size}</span>
+              <span style={{ width: 3, height: 3, borderRadius: 999, background: 'var(--ink-300)' }}></span>
+              <span style={{ ...bodyStyle(14, 'var(--ink-600)') }}>{u.use}</span>
+            </div>
+            </div>
+          ))}
         </div>
         <div style={{ marginTop: 22, display: 'flex', flexDirection: 'column', gap: 6 }}>
           {['All rates are monthly, billed in IDR.', 'Every unit is insulated with built-in ventilation.', 'Minimum term: 1 month. No long lock-in.'].map((f) => (
