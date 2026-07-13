@@ -101,7 +101,7 @@ function Home({ stage }) {
       <Section pad="88px 32px">
         <SectionHead eyebrow="How it works" title="Three steps." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28, marginTop: 40 }} className="stow-3col">
-          {[{ n: '01', t: 'Pick your size', d: 'Not sure? We\\u2019ll help you choose.' }, { n: '02', t: 'Reserve it', d: 'Book online or with our team. For now: join the waitlist.' }, { n: '03', t: 'Move in', d: 'Bring your things, or arrange a hand.' }].map((s) => (
+          {[{ n: '01', t: 'Pick your size', d: 'Not sure? We’ll help you choose.' }, { n: '02', t: 'Reserve it', d: 'Book online or with our team. For now: join the waitlist.' }, { n: '03', t: 'Move in', d: 'Bring your things, or arrange a hand.' }].map((s) => (
             <div key={s.n}>
               <div style={display(52, 'var(--indigo-500)')}>{s.n}</div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, letterSpacing: '-0.015em', fontSize: 23, color: 'var(--ink-900)', margin: '12px 0 8px' }}>{s.t}</h3>
@@ -183,7 +183,7 @@ function Business({ stage }) {
         <SectionHead eyebrow="Who it's for" title="Storage for real businesses." />
         <div style={{ marginTop: 40 }}>
           <FeatureCards cols={4} items={[
-            { t: 'Retail & e-commerce', d: 'Hold stock off-site. Scale up in season, down when it\\u2019s quiet.' },
+            { t: 'Retail & e-commerce', d: 'Hold stock off-site. Scale up in season, down when it’s quiet.' },
             { t: 'Hospitality & villas', d: 'Store linens, furniture, seasonal equipment and spares between guests.' },
             { t: 'Trades & services', d: 'Keep tools, materials and gear secure and out of the workshop.' },
             { t: 'Offices', d: 'Archive documents and records safely, off your floor space.' },
@@ -195,8 +195,8 @@ function Business({ stage }) {
         <div style={{ marginTop: 44 }}>
           <FeatureCards cols={4} items={[
             { icon: 'secure', t: 'Secure', d: '【SECURITY_SPEC】 and individual access. Your inventory stays your inventory.' },
-            { icon: 'climate', t: 'Insulated & ventilated', d: 'Insulation and airflow keep stock, equipment and documents away from Bali\\u2019s damp and heat.' },
-            { icon: 'flexible', t: 'Flexible', d: 'Month to month. Add units as you grow, release them when you don\\u2019t.' },
+            { icon: 'climate', t: 'Insulated & ventilated', d: 'Insulation and airflow keep stock, equipment and documents away from Bali’s damp and heat.' },
+            { icon: 'flexible', t: 'Flexible', d: 'Month to month. Add units as you grow, release them when you don’t.' },
             { icon: 'pin', t: 'Accessible', d: '【HOURS】 access in Kesiman Kertalangu, close to where you work.' },
           ]} />
         </div>
@@ -303,8 +303,8 @@ function Pricing({ stage, showRates }) {
 function HowItWorks({ stage }) {
   const { Section, display, bodyStyle, Button, CtaBand, Icon, Card, go } = window.StowKit;
   const steps = [
-    { n: '01', t: 'Choose your size', d: 'Browse units and pricing, or tell us what you\\u2019re storing and we\\u2019ll recommend a size. No guesswork.' },
-    { n: '02', t: 'Reserve it', d: stage === 'booking' ? 'Reserve online in a few minutes. Pick your unit, set your move-in date, pay securely.' : 'Join the waitlist and we\\u2019ll contact you with your options and rate before we open.' },
+    { n: '01', t: 'Choose your size', d: 'Browse units and pricing, or tell us what you’re storing and we’ll recommend a size. No guesswork.' },
+    { n: '02', t: 'Reserve it', d: stage === 'booking' ? 'Reserve online in a few minutes. Pick your unit, set your move-in date, pay securely.' : 'Join the waitlist and we’ll contact you with your options and rate before we open.' },
     { n: '03', t: 'Move in', d: 'Come to 【ADDRESS】 on your date. Bring your things, or ask us about a hand moving in. Your unit, your access, from 【HOURS】.' },
   ];
   return (
