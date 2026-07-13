@@ -1260,7 +1260,7 @@ function UnitGrid() {
       textTransform: 'uppercase',
       color: 'var(--cream-300)'
     }
-  }, "Canggu · Level 2"), /*#__PURE__*/React.createElement(Badge, {
+  }, "Canggu \xB7 Level 2"), /*#__PURE__*/React.createElement(Badge, {
     tone: "accent"
   }, "6 units left")));
 }
@@ -1279,7 +1279,7 @@ function Hero({
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Badge, {
     tone: "brand"
-  }, "Now open · Canggu & Seminyak"), /*#__PURE__*/React.createElement("h1", {
+  }, "Now open \xB7 Canggu & Seminyak"), /*#__PURE__*/React.createElement("h1", {
     style: {
       fontFamily: 'var(--font-display)',
       fontWeight: 800,
@@ -1495,7 +1495,7 @@ function SizeFinder({
     variant: "primary",
     size: "lg",
     onClick: onBook
-  }, "Reserve the ", SIZES[active].name, " →"))));
+  }, "Reserve the ", SIZES[active].name, " \u2192"))));
 }
 const STEPS = [{
   n: '01',
@@ -1732,7 +1732,7 @@ function SiteFooter() {
       fontSize: 13,
       color: 'var(--ink-400)'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "© 2026 STOW Self Storage Bali"), /*#__PURE__*/React.createElement("span", null, "Canggu · Seminyak · Ubud")));
+  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 STOW Self Storage Bali"), /*#__PURE__*/React.createElement("span", null, "Canggu \xB7 Seminyak \xB7 Ubud")));
 }
 function BookingModal({
   onClose
@@ -1752,7 +1752,7 @@ function BookingModal({
     }
   }, !done ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Badge, {
     tone: "brand"
-  }, "Reserve · free to hold"), /*#__PURE__*/React.createElement("h3", {
+  }, "Reserve \xB7 free to hold"), /*#__PURE__*/React.createElement("h3", {
     style: {
       fontFamily: 'var(--font-display)',
       fontWeight: 800,
@@ -1986,7 +1986,7 @@ function AccessScreen() {
       ...label,
       color: open ? 'var(--gold-300)' : 'var(--indigo-100)'
     }
-  }, "Canggu · Level 2"), /*#__PURE__*/React.createElement("div", {
+  }, "Canggu \xB7 Level 2"), /*#__PURE__*/React.createElement("div", {
     style: {
       ...display(40),
       color: '#fff',
@@ -2121,7 +2121,7 @@ function HomeScreen({
       fontSize: 13,
       color: 'var(--cream-300)'
     }
-  }, "Tap to unlock →")), /*#__PURE__*/React.createElement(ABdg, {
+  }, "Tap to unlock \u2192")), /*#__PURE__*/React.createElement(ABdg, {
     tone: "accent",
     solid: true
   }, "Open")), /*#__PURE__*/React.createElement("div", {
@@ -2194,7 +2194,7 @@ function BillingScreen() {
       ...label,
       color: 'var(--indigo-100)'
     }
-  }, "Next payment · 1 Jul"), /*#__PURE__*/React.createElement("div", {
+  }, "Next payment \xB7 1 Jul"), /*#__PURE__*/React.createElement("div", {
     style: {
       ...display(44),
       margin: '8px 0 0'
@@ -2206,7 +2206,7 @@ function BillingScreen() {
       color: 'rgba(255,255,255,0.85)',
       margin: '4px 0 18px'
     }
-  }, "Studio 4m² + insurance"), /*#__PURE__*/React.createElement(AB, {
+  }, "Studio 4m\xB2 + insurance"), /*#__PURE__*/React.createElement(AB, {
     variant: "inverse",
     size: "md",
     block: true
@@ -2516,7 +2516,7 @@ function Hero({
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Badge, {
     tone: "brand"
-  }, "Now open · Canggu & Seminyak"), /*#__PURE__*/React.createElement("h1", {
+  }, "Now open \xB7 Canggu & Seminyak"), /*#__PURE__*/React.createElement("h1", {
     style: {
       fontFamily: 'var(--font-display)',
       fontWeight: 800,
@@ -2652,7 +2652,7 @@ function UnitGrid() {
       textTransform: 'uppercase',
       color: 'var(--cream-300)'
     }
-  }, "Canggu · Level 2"), /*#__PURE__*/React.createElement(Badge, {
+  }, "Canggu \xB7 Level 2"), /*#__PURE__*/React.createElement(Badge, {
     tone: "accent"
   }, "6 units left")));
 }
@@ -2832,7 +2832,7 @@ function SizeFinder({
     variant: "primary",
     size: "lg",
     onClick: onBook
-  }, "Reserve the ", SIZES[active].name, " →"))));
+  }, "Reserve the ", SIZES[active].name, " \u2192"))));
 }
 const STEPS = [{
   n: '01',
@@ -3099,7 +3099,7 @@ function SiteFooter() {
       fontSize: 13,
       color: 'var(--ink-400)'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "© 2026 STOW Self Storage Bali"), /*#__PURE__*/React.createElement("span", null, "Canggu · Seminyak · Ubud")));
+  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 STOW Self Storage Bali"), /*#__PURE__*/React.createElement("span", null, "Canggu \xB7 Seminyak \xB7 Ubud")));
 }
 Object.assign(window, {
   SizeFinder,
