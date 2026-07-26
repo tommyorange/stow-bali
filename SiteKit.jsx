@@ -300,7 +300,9 @@ function WaitlistForm({ stage = 'waitlist' }) {
           </div>
         </div>
         <Input label="What are you storing?" hint="Optional, one line" placeholder="e.g. villa furniture, retail stock…" />
-        <Button variant="primary" size="lg" block onClick={() => setDone(true)}>{ctaLabel(stage)}</Button>
+        <div data-stow-waitlist-cta>
+          <Button variant="primary" size="lg" block onClick={() => setDone(true)}>{ctaLabel(stage)}</Button>
+        </div>
         <p style={{ ...bodyStyle(13, 'var(--ink-400)'), textAlign: 'center', lineHeight: 1.5 }}>No payment now. No obligation. We'll only contact you about STOW.</p>
       </div>
     </Card>
@@ -347,7 +349,7 @@ function Footer({ stage = 'waitlist' }) {
         <div>
           <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 11.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-300)', marginBottom: 16 }}>Contact</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, ...bodyStyle(14, 'rgba(243,238,225,0.72)') }}>
-            <span>【ADDRESS】</span><span>【PHONE】</span><span>【WHATSAPP】</span><span>【EMAIL】</span><span>【HOURS】</span>
+            <span>【ADDRESS】</span><span>WhatsApp / phone 【WHATSAPP】</span><span>【EMAIL】</span><span>【HOURS】</span>
           </div>
           <div style={{ marginTop: 18 }}><Button variant="gold" size="sm" onClick={() => go('#/contact')}>{ctaLabel(stage)}</Button></div>
           <div style={{ marginTop: 16 }}><LangSwitcher onDark /></div>
@@ -369,10 +371,87 @@ function Footer({ stage = 'waitlist' }) {
   );
 }
 
+/* ---- Floating WhatsApp click-to-chat (site-wide) ----
+   Indigo surface + cream glyph, gold hairline trim: WhatsApp brand green is
+   not in the STOW palette and the system bars green as a brand colour. The
+   glyph shape alone carries the recognition. z-index 50 sits above the sticky
+   header (40) and below the mobile menu overlay (60). Lifts clear of the
+   waitlist CTA whenever the two would overlap. */
+function WhatsAppFab() {
+  const SIZE = 60;
+  const C = window.StowContact || {};
+  const [lift, setLift] = React.useState(0);
+  const [hover, setHover] = React.useState(false);
+  const [focus, setFocus] = React.useState(false);
+  const [press, setPress] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const gap = 16;
+      const off = 20;
+      /* Resting box from the fixed offsets, NOT getBoundingClientRect — that rect
+         already includes the current lift and would feed back on itself. */
+      const rest = {
+        right: innerWidth - off, left: innerWidth - off - SIZE,
+        bottom: innerHeight - off, top: innerHeight - off - SIZE,
+      };
+      let need = 0;
+      document.querySelectorAll('[data-stow-waitlist-cta]').forEach((n) => {
+        const r = n.getBoundingClientRect();
+        if (r.width === 0 && r.height === 0) return;
+        const overlaps = r.left < rest.right + gap && r.right > rest.left - gap && r.top < rest.bottom + gap && r.bottom > rest.top - gap;
+        if (overlaps) need = Math.max(need, rest.bottom - r.top + gap);
+      });
+      setLift((prev) => (Math.abs(prev - need) < 0.5 ? prev : need));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    measure();
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    return () => { removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
+  const size = SIZE;
+  return (
+    <a
+      ref={ref}
+      href={C.WA_URL || 'https://wa.me/message/FF4LV225ZEMCN1'}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with STOW on WhatsApp"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => { setHover(false); setPress(false); }}
+      onFocus={() => setFocus(true)}
+      onBlur={() => setFocus(false)}
+      onMouseDown={() => setPress(true)}
+      onMouseUp={() => setPress(false)}
+      style={{
+        position: 'fixed', right: 'max(20px, env(safe-area-inset-right))',
+        bottom: `calc(max(20px, env(safe-area-inset-bottom)) + ${lift}px)`,
+        zIndex: 50, width: size, height: size, borderRadius: 18,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: hover || focus ? 'var(--indigo-600)' : 'var(--indigo-500)',
+        border: '1px solid var(--gold-500)',
+        boxShadow: focus ? 'var(--ring), var(--shadow-lg)' : 'var(--shadow-lg)',
+        outline: 'none', textDecoration: 'none',
+        transform: `translateY(${press ? 0 : hover ? -2 : 0}px) scale(${press ? 0.97 : 1})`,
+        transition: 'background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), bottom var(--dur) var(--ease)',
+      }}
+    >
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--cream-100)" aria-hidden="true" focusable="false">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.411" />
+      </svg>
+    </a>
+  );
+}
+
 Object.assign(window, { StowKitLoader: () => null });
 window.StowKit = {
   Button, Input, Badge, Card, Stat, Accordion,
   go, ctaLabel, display, eyebrowStyle, bodyStyle,
   Eyebrow, SMark, Wordmark, Icon, Section, UnitGrid, ImgPlaceholder, FacilityImage, PHOTOS, TrustRow, LangSwitcher,
-  Header, Footer, CtaBand, WaitlistForm, WaitlistBand, NAV,
+  Header, Footer, CtaBand, WaitlistForm, WaitlistBand, WhatsAppFab, NAV,
 };
