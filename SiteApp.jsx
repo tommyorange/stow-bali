@@ -31,7 +31,7 @@ function SiteRouter({ stage, showRates }) {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  const { Header, Footer, WhatsAppFab } = window.StowKit;
+  const { Header, Footer } = window.StowKit;
   const key = ROUTES[hash] ? hash : '#/';
   const name = ROUTES[key];
   const Page = window.StowPages[name] || window.StowPages.Home;
@@ -43,7 +43,6 @@ function SiteRouter({ stage, showRates }) {
         <Page stage={stage} showRates={showRates} />
       </main>
       <Footer stage={stage} />
-      <WhatsAppFab />
     </div>
   );
 }
