@@ -23,14 +23,22 @@ window.StowContact = {
   MAILTO: 'mailto:hello@stowbali.com',
 };
 
+/* Public-facing fallbacks. When a key above is still null, visitors see this
+   wording instead of the raw 【KEY】 marker. Keys absent from this map keep
+   showing 【KEY】 — so an unfilled value is still impossible to miss. */
+window.StowFallbacks = {
+  OPEN_DATE: 'soon',
+};
+
 /* Fills 【KEY】 tokens in rendered text and keeps them filled across
-   React re-renders. Keys left null stay visible as placeholders. */
+   React re-renders. Keys left null fall back to StowFallbacks, else stay
+   visible as placeholders. */
 (() => {
   const RE = /【([A-Z_]+)】/g;
   const fill = (node) => {
     const t = node.nodeValue;
     if (!t || t.indexOf('【') === -1) return;
-    const out = t.replace(RE, (m, k) => (window.StowConfig[k] ?? m));
+    const out = t.replace(RE, (m, k) => (window.StowConfig[k] ?? window.StowFallbacks[k] ?? m));
     if (out !== t) node.nodeValue = out;
   };
   const walk = (root) => {
