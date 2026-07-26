@@ -158,10 +158,10 @@ function Contact({ stage }) {
   const { Section, bodyStyle, display, WaitlistForm, Icon, Eyebrow } = window.StowKit;
   const { PageHero } = window.StowShared;
   const { MAP_URL } = window.StowShared;
+  const C = window.StowContact || {};
   const channels = [
-    { icon: 'chat', label: 'WhatsApp', value: '【WHATSAPP】', note: 'Fastest way to reach us' },
-    { icon: 'arrowSm', label: 'Email', value: '【EMAIL】' },
-    { icon: 'clock', label: 'Phone', value: '【PHONE】' },
+    { icon: 'chat', label: 'WhatsApp / Phone', value: '【WHATSAPP】', note: 'Same number — message or call. Fastest way to reach us', href: C.WA_URL, external: true, tel: C.TEL },
+    { icon: 'arrowSm', label: 'Email', value: '【EMAIL】', href: C.MAILTO },
     { icon: 'pin', label: 'Address', value: '【ADDRESS】, Kesiman Kertalangu' },
     { icon: 'clock', label: 'Hours', value: '【HOURS】' },
   ];
@@ -184,8 +184,13 @@ function Contact({ stage }) {
                   <div style={{ flexShrink: 0, width: 42, height: 42, borderRadius: 11, background: 'var(--indigo-050)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name={c.icon} size={20} color="var(--indigo-600)" /></div>
                   <div>
                     <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 11.5, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-400)' }}>{c.label}</div>
-                    <div style={{ ...bodyStyle(17, 'var(--ink-900)'), fontWeight: 600, marginTop: 3 }}>{c.value}</div>
+                    <div style={{ ...bodyStyle(17, 'var(--ink-900)'), fontWeight: 600, marginTop: 3 }}>
+                      {c.href
+                        ? <a href={c.href} {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ color: 'inherit', textDecoration: 'none' }}>{c.value}</a>
+                        : c.value}
+                    </div>
                     {c.note && <div style={{ ...bodyStyle(13.5, 'var(--ink-500)'), marginTop: 2 }}>{c.note}</div>}
+                    {c.tel && <a href={c.tel} style={{ ...bodyStyle(13.5, 'var(--indigo-600)'), fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginTop: 4 }}>Call instead</a>}
                   </div>
                 </div>
               ))}
