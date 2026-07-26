@@ -8,11 +8,19 @@ window.StowConfig = {
   OPEN_DATE: null,      // e.g. 'September 2026'
   HOURS: null,          // e.g. '06:00–22:00, every day'
   ADDRESS: null,        // street address, Kesiman Kertalangu
-  WHATSAPP: null,       // e.g. '+62 812 3456 7890'
-  EMAIL: null,          // e.g. 'hello@stowbali.com'
-  PHONE: null,          // e.g. '+62 361 234 567'
+  WHATSAPP: '+62 (877) 2306 2026',
+  EMAIL: 'hello@stowbali.com',
+  PHONE: '+62 (877) 2306 2026',   // same line as WhatsApp
   SECURITY_SPEC: null,  // e.g. 'CCTV + PIN-coded gate access'
   YEAR: String(new Date().getFullYear()),
+};
+
+/* Machine-readable forms of the contact number — used for hrefs, where the
+   display formatting above (spaces, parens) is not valid. */
+window.StowContact = {
+  WA_URL: 'https://wa.me/message/FF4LV225ZEMCN1',   // WhatsApp Business short link
+  TEL: 'tel:+6287723062026',
+  MAILTO: 'mailto:hello@stowbali.com',
 };
 
 /* Fills 【KEY】 tokens in rendered text and keeps them filled across
