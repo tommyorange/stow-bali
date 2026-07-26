@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="./styles.css" />
 <style>
   html { scroll-behavior: auto; }
-  body { margin: 0; background: var(--cream-100); font-family: var(--font-sans); color: var(--ink-800); -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #F3EEE1; font-family: var(--font-sans); color: var(--ink-800); -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   ::selection { background: var(--indigo-500); color: var(--cream-100); }
   @keyframes stowFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -50,24 +50,155 @@
     .stow-price-table-wrap { display: none !important; }
     .stow-price-cards { display: flex !important; }
   }
+
+  /* Boot splash — visible until React fills #root. Pure CSS, no JS dependency. */
+  #stow-boot {
+    position: fixed; inset: 0; z-index: 999; background: #F3EEE1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    padding: 24px; text-align: center;
+  }
+  #root:not(:empty) ~ #stow-boot { display: none; }
+  @keyframes stowBootPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+  #stow-boot svg { animation: stowBootPulse 1400ms cubic-bezier(0.22,0.61,0.36,1) infinite; }
+  #stow-boot-slow { display: none; max-width: 30ch; }
+  #stow-boot.is-slow #stow-boot-slow { display: block; }
+  #stow-boot-slow p {
+    margin: 0 0 14px; font-family: system-ui, sans-serif; font-size: 14px;
+    line-height: 1.55; color: #4A5164;
+  }
+  #stow-boot-slow button {
+    border: 2px solid #1A2A52; background: transparent; color: #1A2A52;
+    border-radius: 14px; padding: 11px 22px; cursor: pointer;
+    font-family: system-ui, sans-serif; font-weight: 600; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
 </style>
 </head>
 <body>
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<div id="stow-boot">
+  <svg width="60" height="60" viewBox="0 0 48 48" role="img" aria-label="STOW Self Storage">
+    <rect width="48" height="48" rx="11" fill="#1A2A52" />
+    <rect x="11" y="13" width="26" height="6" rx="3" fill="#F3EEE1" />
+    <rect x="8" y="21" width="26" height="6" rx="3" fill="#C7A14A" />
+    <rect x="11" y="29" width="26" height="6" rx="3" fill="#F3EEE1" />
+  </svg>
+  <div id="stow-boot-slow">
+    <p>Still loading — this can take a moment on a slow connection.</p>
+    <button type="button" onclick="location.reload()">Reload</button>
+  </div>
+</div>
 
+<!-- Local, plain JS: no transpile step needed. -->
 <script src="./_ds_bundle.js"></script>
 <script src="./site-config.js"></script>
 <script src="./translations.js"></script>
-<script type="text/babel" src="./SiteKit.jsx"></script>
-<script type="text/babel" src="./SitePages.jsx"></script>
-<script type="text/babel" src="./SitePages2.jsx"></script>
-<script type="text/babel" src="./SiteApp.jsx"></script>
-<script type="text/babel">
-  ReactDOM.createRoot(document.getElementById('root')).render(<SiteApp stage="waitlist" showRates={true} />);
+
+<!--
+  Boot loader. Three jobs:
+   1. Production React (≈8x smaller than the dev build), no SRI — mobile
+      carriers in ID transcode script responses, which silently fails
+      integrity checks and leaves a permanently blank page.
+   2. Every dependency falls back to a second CDN, then a third.
+   3. The JSX is fetched and transpiled explicitly. Babel's own
+      transformScriptTags() skips src'd <script type="text/babel"> tags when
+      Babel itself arrives after DOMContentLoaded — which is exactly what
+      happens on a slow mobile connection.
+-->
+<script>
+(function () {
+  var HOSTS = [
+    'https://cdn.jsdelivr.net/npm/',
+    'https://unpkg.com/',
+    'https://cdnjs.cloudflare.com/ajax/libs/'
+  ];
+  var DEPS = [
+    { paths: ['react@18.3.1/umd/react.production.min.js',
+              'react@18.3.1/umd/react.production.min.js',
+              'react/18.3.1/umd/react.production.min.js'],
+      ready: function () { return !!window.React; } },
+    { paths: ['react-dom@18.3.1/umd/react-dom.production.min.js',
+              'react-dom@18.3.1/umd/react-dom.production.min.js',
+              'react-dom/18.3.1/umd/react-dom.production.min.js'],
+      ready: function () { return !!(window.ReactDOM && window.ReactDOM.createRoot); } },
+    { paths: ['@babel/standalone@7.29.0/babel.min.js',
+              '@babel/standalone@7.29.0/babel.min.js',
+              'babel-standalone/6.26.0/babel.min.js'],
+      ready: function () { return !!(window.Babel && window.Babel.transform); } }
+  ];
+
+  var boot = document.getElementById('stow-boot');
+  var slowTimer = setTimeout(function () { if (boot) boot.className = 'is-slow'; }, 9000);
+
+  function fetchDep(i, host, done) {
+    if (host >= HOSTS.length) { done(false); return; }
+    var dep = DEPS[i];
+    var s = document.createElement('script');
+    s.src = HOSTS[host] + dep.paths[Math.min(host, dep.paths.length - 1)];
+    s.async = false;
+    s.onload = function () { dep.ready() ? done(true) : fetchDep(i, host + 1, done); };
+    s.onerror = function () { fetchDep(i, host + 1, done); };
+    document.head.appendChild(s);
+  }
+
+  function step(i) {
+    if (i >= DEPS.length) { runApp(); return; }
+    if (DEPS[i].ready()) { step(i + 1); return; }
+    fetchDep(i, 0, function (ok) { ok ? step(i + 1) : fail(); });
+  }
+
+  var SOURCES = ['./SiteKit.jsx', './SitePages.jsx', './SitePages2.jsx', './SiteApp.jsx'];
+
+  /* Inline <script> rather than eval() so function declarations land in global
+     scope, the way the original tags behaved. */
+  function exec(code) {
+    var s = document.createElement('script');
+    s.textContent = code;
+    document.body.appendChild(s);
+  }
+
+  function runApp() {
+    var texts = new Array(SOURCES.length);
+    var left = SOURCES.length;
+    var broke = false;
+
+    SOURCES.forEach(function (url, i) {
+      var x = new XMLHttpRequest();
+      x.open('GET', url, true);
+      x.onload = function () {
+        if (x.status >= 200 && x.status < 300) { texts[i] = x.responseText; }
+        else { broke = true; }
+        if (--left === 0) { compile(); }
+      };
+      x.onerror = function () { broke = true; if (--left === 0) { compile(); } };
+      x.send();
+    });
+
+    function compile() {
+      if (broke) { fail(); return; }
+      try {
+        for (var i = 0; i < texts.length; i++) {
+          exec(window.Babel.transform(texts[i], { presets: ['react'] }).code);
+        }
+        exec('ReactDOM.createRoot(document.getElementById("root"))' +
+             '.render(React.createElement(SiteApp, { stage: "waitlist", showRates: true }));');
+      } catch (e) {
+        fail();
+        return;
+      }
+      clearTimeout(slowTimer);
+      if (!document.getElementById('root').firstChild) { fail(); }
+    }
+  }
+
+  function fail() {
+    clearTimeout(slowTimer);
+    if (boot) boot.className = 'is-slow';
+  }
+
+  step(0);
+})();
 </script>
 </body>
 </html>
