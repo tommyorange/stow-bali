@@ -1,7 +1,6 @@
 {
   "name": "STOW Self Storage (stowbali.com)",
   "baseUrl": "https://stowbali.com",
-
   "routeStyle": "hash",
   "renderSelector": "#root",
   "minRenderChars": 400,
@@ -9,13 +8,10 @@
   "renderTimeoutMs": 30000,
   "routeRenderTimeoutMs": 15000,
   "timeoutMs": 45000,
-
   "gaMeasurementId": "G-0BQ3GTVYDC",
-
   "expectCanonical": "https://stowbali.com/",
   "expectOgImage": "https://stowbali.com/assets/og-image.png",
   "expectOgSiteName": "STOW Self Storage",
-
   "_forbiddenStrings_why": "The three 【KEY】 tokens listed here always resolve - WHATSAPP and EMAIL have values in site-config.js, OPEN_DATE has a per-language fallback. A raw one on the page means the token filler is broken. This exact failure shipped on 2026-08-07 when site-config.js landed without translations.js: the page rendered fine and every check passed while showing placeholder junk. ADDRESS, HOURS and SECURITY_SPEC are deliberately absent - those are still null and are MEANT to be visible.",
   "forbiddenStrings": [
     "REPLACE-WITH-DOMAIN",
@@ -25,7 +21,6 @@
     "【EMAIL】",
     "【OPEN_DATE】"
   ],
-
   "selfHostedFonts": [
     "/fonts/archivo/archivo-normal-latin.woff2",
     "/fonts/archivo/archivo-normal-latin-ext.woff2",
@@ -37,12 +32,17 @@
   "expectFontFamily": "Archivo",
   "expectFontWeight": "400 900",
   "expectFontStretch": "62% 125%",
-
-  "expectFontFamilies": ["Archivo", "Noto Sans JP"],
+  "expectFontFamilies": [
+    "Archivo",
+    "Noto Sans JP"
+  ],
   "warnFontFamilies": [],
-
   "googleFontsPolicy": "warn",
-
+  "_allowedGoogleFonts_why": "Archivo is self-hosted and must NEVER come from Google - that would mean the self-hosting regressed and the variable axes are gone. Noto Sans JP is deliberately Google-hosted (Google slices it into 124 unicode-range subsets; self-hosting all of them is not worth it), so its request is expected and must not warn forever.",
+  "allowedGoogleFonts": [
+    "fonts\\.googleapis\\.com/css2\\?family=Noto\\+Sans\\+JP",
+    "fonts\\.gstatic\\.com/s/notosansjp/"
+  ],
   "assets": [
     "/assets/og-image.png",
     "/assets/favicon-16.png",
@@ -70,7 +70,6 @@
     "/tokens/spacing.css",
     "/tokens/typography.css"
   ],
-
   "routes": [
     "/",
     "/personal",
@@ -84,12 +83,18 @@
     "/privacy",
     "/terms"
   ],
-
   "requiredLinks": {
-    "/": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"],
-    "/contact": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"]
+    "/": [
+      "wa.me/message/FF4LV225ZEMCN1",
+      "tel:+6287723062026",
+      "mailto:hello@stowbali.com"
+    ],
+    "/contact": [
+      "wa.me/message/FF4LV225ZEMCN1",
+      "tel:+6287723062026",
+      "mailto:hello@stowbali.com"
+    ]
   },
-
   "allowedConsolePatterns": [
     "react devtools",
     "in-browser babel transformer",
