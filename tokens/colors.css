@@ -1,17 +1,17 @@
 /* ============================================================
-   STOW — Color tokens
+   STOW - Color tokens
    Premium challenger. Indigo is the base and dominant brand
    color; Gold is an antique trim/detail accent (never a field);
    Cream is the reversed-type / paper light; Ink anchors text.
    No green as a brand or decorative color (keeps STOW separate
-   from the BAU charcoal/jade system) — green is functional
+   from the BAU charcoal/jade system) - green is functional
    form-status only.
    ============================================================ */
 :root {
   /* ---- Brand core ---- */
-  --indigo:        #1A2A52;  /* primary — signage, surfaces, dominant */
+  --indigo:        #1A2A52;  /* primary - signage, surfaces, dominant */
   --ink:           #14171E;  /* text / deepest surfaces */
-  --gold:          #C7A14A;  /* accent — antique gold, trim/detail only */
+  --gold:          #C7A14A;  /* accent - antique gold, trim/detail only */
   --cream:         #F3EEE1;  /* reversed type on indigo / light paper */
   --white:         #FFFFFF;
 
@@ -41,14 +41,14 @@
   --cream-300:     #D6CDB6;  /* borders */
   --cream-400:     #BFB498;
 
-  /* ---- Gold ramp (antique / muted — accent only) ---- */
+  /* ---- Gold ramp (antique / muted - accent only) ---- */
   --gold-700:      #997632;  /* deep / pressed trim */
   --gold-600:      #B08B3A;  /* hover on gold */
   --gold-500:      #C7A14A;  /* base accent */
   --gold-300:      #DBC084;  /* tint */
-  --gold-100:      #EFE6CC;  /* faint wash — sparingly */
+  --gold-100:      #EFE6CC;  /* faint wash - sparingly */
 
-  /* ---- Semantic status (functional only — never brand/decorative) ---- */
+  /* ---- Semantic status (functional only - never brand/decorative) ---- */
   --success:       #2F855A;  /* muted, functional validation only */
   --success-wash:  #E4F0E9;
   --warning:       #C98A12;  /* distinct from gold accent */
@@ -59,7 +59,7 @@
   --info-wash:     var(--indigo-050);
 
   /* ============================================================
-     Semantic aliases — reference these in components
+     Semantic aliases - reference these in components
      ============================================================ */
   /* Surfaces */
   --surface-page:      var(--cream-100);

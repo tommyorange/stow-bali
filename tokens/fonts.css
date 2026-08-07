@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..800&display=swap');
 /* STOW typefaces
-   — Archivo (variable: width 62–125, weight 100–900): the sole Latin face.
+   - Archivo (variable: width 62-125, weight 100-900): the sole Latin face.
      Covers EN and Bahasa Indonesia. The width axis powers the expanded
      display setting (font-stretch: 112%).
-   — Noto Sans JP (weight 400–800): Japanese companion face. Kana/kanji
+   - Noto Sans JP (weight 400-800): Japanese companion face. Kana/kanji
      have no Archivo glyphs; JP text sets in Noto Sans JP with NO stretch,
      NO uppercase transform, tracking 0 to +0.02em (never negative).
 
@@ -70,7 +71,6 @@
   src: url('../fonts/archivo/archivo-normal-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..800&display=swap');
 
 :root {
   --font-sans: 'Archivo', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -88,9 +88,27 @@
 
 /* When the site language is Japanese (html[data-stow-lang="JP"], set by the
    LangSwitcher + translations.js): kill the Latin display tricks that don't
-   translate — negative tracking and sub-1 line-height clip kana/kanji.
+   translate - negative tracking and sub-1 line-height clip kana/kanji.
    Latin glyphs still render in Archivo via the per-glyph fallback above. */
 html[data-stow-lang="JP"] :is(h1, h2, h3, h4) {
   letter-spacing: 0 !important;
   line-height: 1.22 !important;
+}
+
+/* Japanese never sets uppercase. text-transform is a no-op on kana/kanji but
+   still hits any Latin run inside a JP string (STOW, WhatsApp, IDR), and the
+   tracked-uppercase label setting is wrong for JP per the type spec.
+   Gated on the JP site language, so EN and ID are untouched.
+
+   Two carve-outs:
+   [data-stow-lockup] is the STOW. wordmark - a logo, not localisable copy, so
+   it stays uppercase in every language. The header nav is excluded too: its
+   labels are chrome, and the design system keeps them as tracked uppercase.
+   letter-spacing is applied in a second rule that skips h1-h4, so the existing
+   JP heading rule below (letter-spacing: 0) keeps winning on headings. */
+html[data-stow-lang="JP"] [style*="uppercase"]:not([data-stow-lockup]):not([data-stow-lockup] *):not(header [style*="uppercase"]) {
+  text-transform: none !important;
+}
+html[data-stow-lang="JP"] [style*="uppercase"]:not([data-stow-lockup]):not([data-stow-lockup] *):not(header [style*="uppercase"]):not(h1):not(h2):not(h3):not(h4) {
+  letter-spacing: 0.02em !important;
 }
