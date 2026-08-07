@@ -176,8 +176,17 @@ page.on('pageerror', (e) => consoleErrors.push(`pageerror: ${e.message}`));
 const BEACON = /google-analytics\.com|analytics\.google\.com|\/g\/collect|googletagmanager\.com\/(td|a)\b/;
 page.on('requestfailed', (r) => {
   const u = r.url();
-  if (!BEACON.test(u)) {
-    failedRequests.push(`${u} (${r.failure()?.errorText || 'failed'})`);
+  const err = r.failure()?.errorText || 'failed';
+  /* ERR_ABORTED means WE cancelled it: this checker navigates 15+ times
+     (11 routes, plus about:blank between each), and any request still in
+     flight when the next navigation starts is aborted. Observed on live CI -
+     gtag/js loaded fine AND appeared here, in the same run, because a later
+     route's copy was cut off mid-flight. Left in, it flaps at random and the
+     warning stops meaning anything. A genuinely broken asset does not abort;
+     it resolves, refuses, or 404s, and the explicit asset and route checks
+     catch all three. */
+  if (!BEACON.test(u) && !/ERR_ABORTED/.test(err)) {
+    failedRequests.push(`${u} (${err})`);
   }
 });
 page.on('response', (r) => {
