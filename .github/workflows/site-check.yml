@@ -1,0 +1,82 @@
+name: site check
+
+# Proves the LIVE site is actually fine. A green Vercel build does not.
+# stowbali.com went blank on 2026-07-26 while Vercel reported success the
+# whole time, so this checks the rendered page, not the build.
+#
+# Runs in three situations:
+#   - after a push to main, once Vercel has had time to deploy
+#   - every morning, to catch things that break silently (Ingenra's GA tag
+#     was dead for 8 days because nothing was watching)
+#   - on demand, from the Actions tab
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 06:00 Asia/Makassar = 22:00 UTC the previous day
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Override the URL to check (e.g. a Vercel preview)'
+        required: false
+        type: string
+
+concurrency:
+  group: site-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install checker deps
+        working-directory: check
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      # A push triggers Vercel and this workflow at the same moment. Without
+      # this the checker tests the PREVIOUS deploy and reports a false green.
+      - name: Wait for Vercel to deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+
+      - name: Check the live site
+        working-directory: check
+        env:
+          BASE_OVERRIDE: ${{ github.event.inputs.base_url }}
+        run: |
+          set +e
+          ARGS="sites/stow.json"
+          if [ -n "$BASE_OVERRIDE" ]; then ARGS="$ARGS --base $BASE_OVERRIDE"; fi
+
+          # Two attempts. A single transient CDN blip should not wake Aaron up,
+          # but a genuinely broken site fails both.
+          for attempt in 1 2; do
+            echo "::group::attempt $attempt"
+            node site-check.mjs $ARGS | tee /tmp/out-$attempt.txt
+            code=${PIPESTATUS[0]}
+            echo "::endgroup::"
+            if [ "$code" -eq 0 ]; then
+              echo "PASSED on attempt $attempt"
+              cat /tmp/out-$attempt.txt >> $GITHUB_STEP_SUMMARY
+              exit 0
+            fi
+            if [ "$attempt" -lt 2 ]; then echo "attempt $attempt failed, retrying in 45s"; sleep 45; fi
+          done
+
+          echo "### Site check FAILED" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat /tmp/out-2.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          exit 1
