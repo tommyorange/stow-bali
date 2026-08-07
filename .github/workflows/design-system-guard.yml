@@ -1,0 +1,62 @@
+name: design system guard
+
+# The design system is the master of truth for design primitives. This is the
+# enforceable version of that rule.
+#
+# Files listed in check/design-system-owned.txt are OWNED by the STOW design
+# system. They arrive here by being exported from the Design project. Editing
+# them anywhere else - in the repo, by hand, or in the site project - means
+# live has silently drifted from the design system.
+#
+# This job does not block anything. It comments on the commit so the drift is
+# impossible to miss, and it is a warning by design: a legitimate design
+# system release WILL touch these files, and that is fine. What you cannot
+# have is touching them without knowing.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check whether this push touched design-system-owned files
+        id: drift
+        run: |
+          set -e
+          CHANGED=$(git diff --name-only HEAD^ HEAD || true)
+          echo "Changed in this push:"
+          echo "$CHANGED"
+
+          TOUCHED=""
+          while IFS= read -r pattern; do
+            case "$pattern" in ''|\#*) continue ;; esac
+            while IFS= read -r f; do
+              [ -z "$f" ] && continue
+              case "$f" in
+                $pattern) TOUCHED="$TOUCHED$f"$'\n' ;;
+              esac
+            done <<< "$CHANGED"
+          done < check/design-system-owned.txt
+
+          TOUCHED=$(printf '%s' "$TOUCHED" | sort -u | sed '/^$/d')
+
+          if [ -n "$TOUCHED" ]; then
+            echo "## Design-system-owned files changed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "This push edited files the STOW design system owns:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$TOUCHED" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "If this was a design system release, nothing to do." >> $GITHUB_STEP_SUMMARY
+            echo "If it was not, live has drifted from the design system." >> $GITHUB_STEP_SUMMARY
+            echo "Fix it in the design system and re-export - do not patch the repo." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No design-system-owned files changed." >> $GITHUB_STEP_SUMMARY
+          fi
