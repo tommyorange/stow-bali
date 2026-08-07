@@ -1,0 +1,13 @@
+{
+  "name": "stow-site-check",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Live-site health checker. Not part of the deployed site - excluded via .vercelignore.",
+  "scripts": {
+    "check": "node site-check.mjs sites/stow.json"
+  },
+  "dependencies": {
+    "playwright": "1.56.1"
+  }
+}

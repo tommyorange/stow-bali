@@ -1,0 +1,31 @@
+# Files the STOW design system owns.
+#
+# These reach this repo by being exported from the Design project. Nothing
+# else should ever change them: not a hand edit in GitHub, not a "quick fix"
+# on the site project side. If one of these changes outside a design system
+# release, live has drifted from the design system and the next release will
+# silently revert whatever was done here.
+#
+# The design-system-guard workflow flags any push touching these. It warns,
+# it does not block - a real design system release is supposed to touch them.
+# The point is that it can never happen without you seeing it.
+#
+# Glob patterns, one per line. Blank lines and # comments ignored.
+
+# Design tokens - colour, type scale, spacing, radius, motion.
+tokens/*.css
+
+# The compiled design system bundle. Do not hand-edit, and do not swap in the
+# design system project's 194 KB root bundle - Aaron's decision 2026-07-26 is
+# that the working 90 KB bundle stays.
+_ds_bundle.js
+
+# Self-hosted Archivo. Regenerate with fetch-archivo-fonts.ps1, never by hand,
+# and never from a static-instances export - that strips the variable axes.
+fonts/archivo/*.woff2
+
+# Shared component kit. Owns every component SiteApp and the pages mount.
+SiteKit.jsx
+
+# Global stylesheet.
+styles.css

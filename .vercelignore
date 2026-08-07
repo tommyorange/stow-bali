@@ -1,0 +1,5 @@
+# Tooling, not site content. Keeps the checker and CI config out of the
+# deployed bundle so /check/site-check.mjs is not publicly served.
+check
+.github
+fetch-archivo-fonts.ps1
