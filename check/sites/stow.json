@@ -1,0 +1,87 @@
+{
+  "name": "STOW Self Storage (stowbali.com)",
+  "baseUrl": "https://stowbali.com",
+
+  "routeStyle": "hash",
+  "renderSelector": "#root",
+  "minRenderChars": 400,
+  "brokenIndicatorSelector": "#stow-boot",
+  "renderTimeoutMs": 30000,
+  "routeRenderTimeoutMs": 15000,
+  "timeoutMs": 45000,
+
+  "gaMeasurementId": "G-0BQ3GTVYDC",
+
+  "expectCanonical": "https://stowbali.com/",
+  "expectOgImage": "https://stowbali.com/assets/og-image.png",
+  "expectOgSiteName": "STOW Self Storage",
+
+  "forbiddenStrings": ["REPLACE-WITH-DOMAIN", "TODO:", "lorem ipsum"],
+
+  "selfHostedFonts": [
+    "/fonts/archivo/archivo-normal-latin.woff2",
+    "/fonts/archivo/archivo-normal-latin-ext.woff2",
+    "/fonts/archivo/archivo-normal-vietnamese.woff2",
+    "/fonts/archivo/archivo-italic-latin.woff2",
+    "/fonts/archivo/archivo-italic-latin-ext.woff2",
+    "/fonts/archivo/archivo-italic-vietnamese.woff2"
+  ],
+  "expectFontFamily": "Archivo",
+  "expectFontWeight": "400 900",
+  "expectFontStretch": "62% 125%",
+  "googleFontsPolicy": "warn",
+
+  "assets": [
+    "/assets/og-image.png",
+    "/assets/favicon-16.png",
+    "/assets/favicon-32.png",
+    "/assets/apple-touch-icon-180.png",
+    "/assets/icon-192.png",
+    "/assets/icon-512.png",
+    "/assets/hero-facility-night.png",
+    "/assets/photo-corridor.png",
+    "/assets/photo-entrance-gate.png",
+    "/assets/photo-open-unit.png",
+    "/assets/photo-side-elevation.png",
+    "/styles.css",
+    "/_ds_bundle.js",
+    "/site-config.js",
+    "/translations.js",
+    "/SiteApp.jsx",
+    "/SiteKit.jsx",
+    "/SitePages.jsx",
+    "/SitePages2.jsx",
+    "/tokens/colors.css",
+    "/tokens/fonts.css",
+    "/tokens/motion.css",
+    "/tokens/radius.css",
+    "/tokens/spacing.css",
+    "/tokens/typography.css"
+  ],
+
+  "routes": [
+    "/",
+    "/personal",
+    "/business",
+    "/pricing",
+    "/how-it-works",
+    "/facility",
+    "/faq",
+    "/about",
+    "/contact",
+    "/privacy",
+    "/terms"
+  ],
+
+  "requiredLinks": {
+    "/": ["wa.me/message/FF4LV225ZEMCN1"],
+    "/contact": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"]
+  },
+
+  "allowedConsolePatterns": [
+    "react devtools",
+    "in-browser babel transformer",
+    "babel.*transformer.*not.*production",
+    "download the react devtools"
+  ]
+}
