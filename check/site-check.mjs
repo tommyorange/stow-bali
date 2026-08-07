@@ -339,12 +339,25 @@ if (cfg.expectFontFamilies?.length || cfg.warnFontFamilies?.length) {
   }
 }
 
-if (cfg.googleFontsPolicy === 'forbid') {
-  if (googleFontHits.size === 0) pass('no Google Fonts on default view');
-  else fail('no Google Fonts on default view', [...googleFontHits].join(', ').slice(0, 160));
-} else if (cfg.googleFontsPolicy === 'warn') {
-  if (googleFontHits.size === 0) pass('no Google Fonts on default view');
-  else warn('no Google Fonts on default view', false, [...googleFontHits].join(', ').slice(0, 160));
+/* Some Google-hosted fonts are a deliberate choice, not a regression. STOW
+   self-hosts Archivo but keeps Noto Sans JP on Google's import, because Google
+   slices it into 124 unicode-range subsets and self-hosting all of them is not
+   worth it. So a blanket "zero googleapis" check is wrong: it fired on every
+   run the moment the JP import started working, and a check that always warns
+   is a check nobody reads.
+   allowedGoogleFonts is a list of regexes for the requests that are SUPPOSED to
+   be there. Anything else still trips the policy - which is the check that
+   matters, since Archivo coming from Google would mean self-hosting regressed. */
+const allowedGF = (cfg.allowedGoogleFonts || []).map((p) => new RegExp(p, 'i'));
+const unexpectedGF = [...googleFontHits].filter((u) => !allowedGF.some((r) => r.test(u)));
+const expectedGF = googleFontHits.size - unexpectedGF.length;
+
+if (cfg.googleFontsPolicy === 'forbid' || cfg.googleFontsPolicy === 'warn') {
+  const label = 'no unexpected Google Fonts';
+  const detail = `${expectedGF} allowed, ${unexpectedGF.length} unexpected`;
+  if (unexpectedGF.length === 0) pass(label, detail);
+  else if (cfg.googleFontsPolicy === 'forbid') fail(label, unexpectedGF.join(', ').slice(0, 200));
+  else warn(label, false, unexpectedGF.join(', ').slice(0, 200));
 }
 
 /* ---- 5. Assets ---- */
