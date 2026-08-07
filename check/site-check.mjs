@@ -39,13 +39,9 @@ const QUIET = argv.includes('--quiet');
 /* ---------- reporting ---------- */
 
 const results = [];
-let hardFailures = 0;
-let warnings = 0;
 
 function record(level, name, ok, detail = '') {
   results.push({ level, name, ok, detail });
-  if (!ok && level === 'fail') hardFailures++;
-  if (!ok && level === 'warn') warnings++;
   const mark = ok ? 'PASS' : level === 'fail' ? 'FAIL' : 'WARN';
   if (!QUIET || !ok) {
     console.log(`  ${mark.padEnd(4)}  ${name}${detail ? `  ${detail}` : ''}`);
@@ -145,7 +141,9 @@ const page = await ctx.newPage();
 /* Optional, local testing only: serve third-party CDN scripts from disk so the
    checker can be exercised on a machine with no outbound internet. Never used
    in CI against the live site. --route-map path/to/map.json
-   { "cdn.jsdelivr.net/npm/react@18.3.1/...": "node_modules/react/umd/..." } */
+   Paths in the map are resolved relative to the CURRENT WORKING DIRECTORY, so
+   use absolute paths unless you are running from the repo root.
+   { "react.production.min.js": "/abs/path/node_modules/react/umd/..." } */
 const routeMapPath = flag('route-map');
 if (routeMapPath) {
   const map = JSON.parse(readFileSync(routeMapPath, 'utf8'));
@@ -240,15 +238,17 @@ if (gaId) {
 /* ---- 3. Head tags ---- */
 
 section('3. Head tags');
-const head = await page.evaluate(() => ({
-  canonical: document.querySelector('link[rel="canonical"]')?.href || null,
-  ogImage: document.querySelector('meta[property="og:image"]')?.content || null,
-  ogSiteName: document.querySelector('meta[property="og:site_name"]')?.content || null,
-  ogUrl: document.querySelector('meta[property="og:url"]')?.content || null,
-  title: document.title,
-  description: document.querySelector('meta[name="description"]')?.content || null,
-  html: document.documentElement.outerHTML,
-}));
+const head = await page
+  .evaluate(() => ({
+    canonical: document.querySelector('link[rel="canonical"]')?.href || null,
+    ogImage: document.querySelector('meta[property="og:image"]')?.content || null,
+    ogSiteName: document.querySelector('meta[property="og:site_name"]')?.content || null,
+    ogUrl: document.querySelector('meta[property="og:url"]')?.content || null,
+    title: document.title,
+    description: document.querySelector('meta[name="description"]')?.content || null,
+    html: document.documentElement.outerHTML,
+  }))
+  .catch(() => ({ canonical: null, ogImage: null, ogSiteName: null, ogUrl: null, title: '', description: null, html: '' }));
 
 if (cfg.expectCanonical) {
   if (head.canonical === cfg.expectCanonical) pass('canonical tag', head.canonical);
@@ -353,12 +353,19 @@ if (!homeOk) {
 /* ---- 7. Internal links ---- */
 
 section('7. Internal links');
-await page.goto('about:blank');
-await page.goto(`${BASE}/`, { waitUntil: 'domcontentloaded' });
-await waitForRender(page);
-const hrefs = await page.evaluate(() =>
-  [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'))
-);
+/* Guarded: if the site drops between sections, report it rather than throwing
+   an unhandled error and losing every result gathered so far. */
+let hrefs = [];
+try {
+  await page.goto('about:blank');
+  await page.goto(`${BASE}/`, { waitUntil: 'domcontentloaded', timeout: cfg.timeoutMs ?? 45000 });
+  await waitForRender(page);
+  hrefs = await page.evaluate(() =>
+    [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'))
+  );
+} catch (e) {
+  fail('reload home page for link check', String(e.message || e).slice(0, 120));
+}
 const internal = [...new Set(hrefs)].filter(
   (h) => h && !/^(mailto:|tel:|javascript:|#$)/.test(h) && !/^https?:\/\//.test(h)
 );
@@ -384,10 +391,14 @@ if (cfg.requiredLinks) {
   for (const [route, required] of Object.entries(cfg.requiredLinks)) {
     let routeHrefs = hrefs;
     if (route !== '/' && homeOk) {
-      await loadRoute(page, route, cfg.routeRenderTimeoutMs ?? 15000);
-      routeHrefs = await page.evaluate(() =>
-        [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'))
-      );
+      try {
+        await loadRoute(page, route, cfg.routeRenderTimeoutMs ?? 15000);
+        routeHrefs = await page.evaluate(() =>
+          [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'))
+        );
+      } catch {
+        routeHrefs = [];
+      }
     }
     for (const req of required) {
       if (routeHrefs.some((h) => h && h.includes(req))) pass(`link on ${route}`, req);
@@ -401,7 +412,7 @@ if (cfg.requiredLinks) {
 section('8. Console');
 const allow = (cfg.allowedConsolePatterns || []).map((p) => new RegExp(p, 'i'));
 /* "Failed to load resource" duplicates the requestfailed handler and the
-   explicit asset checks below. A genuinely missing asset still hard-fails via
+   explicit asset checks above. A genuinely missing asset still hard-fails via
    the assets list and the broken-<img> check, so counting it twice here only
    creates noise from third-party beacons. Real JS errors still fail. */
 const RESOURCE_NOISE = /failed to load resource|net::ERR_/i;
