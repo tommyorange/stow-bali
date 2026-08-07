@@ -305,6 +305,31 @@ if (cfg.expectFontFamily) {
     else if (cfg.expectFontStretch) pass('font stretch axis', face.stretch);
   }
 }
+/* Every font family that must be REGISTERED in document.fonts.
+   Found 2026-08-07: STOW's Noto Sans JP never loaded, because its @import in
+   tokens/fonts.css sits after the @font-face blocks and CSS requires @import
+   to come first, so browsers silently drop it. Nothing caught that. This does.
+   A family that a page never uses will not appear here, so only list families
+   the default view genuinely needs.
+     expectFontFamilies - hard fail if missing
+     warnFontFamilies   - warn only; use while a known fix is still pending,
+                          then promote the entry to expectFontFamilies. */
+if (cfg.expectFontFamilies?.length || cfg.warnFontFamilies?.length) {
+  const registered = await page
+    .evaluate(() => [...new Set([...document.fonts].map((f) => f.family.replace(/^['"]|['"]$/g, '')))])
+    .catch(() => []);
+  const has = (fam) => registered.some((r) => r.toLowerCase() === fam.toLowerCase());
+
+  for (const fam of cfg.expectFontFamilies || []) {
+    if (has(fam)) pass(`font family registered: ${fam}`);
+    else fail(`font family registered: ${fam}`, `not in document.fonts (found: ${registered.join(', ') || 'none'})`);
+  }
+  for (const fam of cfg.warnFontFamilies || []) {
+    if (has(fam)) warn(`font family registered: ${fam}`, true, 'now loading - promote to expectFontFamilies');
+    else warn(`font family registered: ${fam}`, false, `not in document.fonts (found: ${registered.join(', ') || 'none'})`);
+  }
+}
+
 if (cfg.googleFontsPolicy === 'forbid') {
   if (googleFontHits.size === 0) pass('no Google Fonts on default view');
   else fail('no Google Fonts on default view', [...googleFontHits].join(', ').slice(0, 160));
