@@ -1,4 +1,4 @@
-/* STOW website — pages A: Home, Personal, Business, Units & Pricing, How It Works.
+/* STOW website - pages A: Home, Personal, Business, Units & Pricing, How It Works.
    Reads window.StowKit; merges into window.StowPages. */
 const MAP_URL = 'https://maps.app.goo.gl/HbMR3C5H6r7BdaKm9';
 
@@ -62,7 +62,7 @@ function Home({ stage }) {
       <PageHero
         eyebrow="Opening 【OPEN_DATE】 · Kesiman Kertalangu, Bali"
         title={<>Storage in Bali,<br />done properly<span style={{ color: 'var(--gold-500)' }}>.</span></>}
-        sub="Clean, secure, insulated and ventilated units for your home and your business — in Kesiman Kertalangu. We open 【OPEN_DATE】. Join the waitlist today."
+        sub="Clean, secure, insulated and ventilated units for your home and your business - in Kesiman Kertalangu. We open 【OPEN_DATE】. Join the waitlist today."
         primary={window.StowKit.ctaLabel(stage)}
         visual={<div style={{ opacity: 1, animation: 'stowFadeUp 0.6s var(--ease, ease) forwards' }}><FacilityImage /></div>}
       />
@@ -93,7 +93,7 @@ function Home({ stage }) {
 
       {/* Why STOW */}
       <Section bg="var(--cream-050)" bordered pad="88px 32px">
-        <SectionHead eyebrow="Why STOW" title="Storage you can actually trust." intro="Bali is hard on stored belongings — humidity, heat, damp. STOW is built to protect against all three." />
+        <SectionHead eyebrow="Why STOW" title="Storage you can actually trust." intro="Bali is hard on stored belongings - humidity, heat, damp. STOW is built to protect against all three." />
         <div style={{ marginTop: 44 }}><TrustRow /></div>
       </Section>
 
@@ -137,7 +137,7 @@ function Personal({ stage }) {
       <PageHero
         eyebrow="Personal storage"
         title={<>Room for life<br />in Bali<span style={{ color: 'var(--gold-500)' }}>.</span></>}
-        sub="Between moves, mid-renovation, or living somewhere that ran out of space — STOW keeps your things safe, dry and easy to reach."
+        sub="Between moves, mid-renovation, or living somewhere that ran out of space - STOW keeps your things safe, dry and easy to reach."
         primary={window.StowKit.ctaLabel(stage)}
       />
       <Section pad="88px 32px">
@@ -147,7 +147,7 @@ function Personal({ stage }) {
             { t: 'Relocating', d: 'Landed in Bali, or moving villas. Store your things while you settle.' },
             { t: 'Renovating', d: 'Clear a room without sending furniture across the island.' },
             { t: 'Living light', d: 'Small villa, big life. Keep surfboards, bikes and off-season gear out of the way.' },
-            { t: 'Travelling', d: 'Leaving for a stretch. Store, lock, go — come back to everything as you left it.' },
+            { t: 'Travelling', d: 'Leaving for a stretch. Store, lock, go - come back to everything as you left it.' },
           ]} />
         </div>
       </Section>
@@ -176,7 +176,7 @@ function Business({ stage }) {
       <PageHero
         eyebrow="Business storage"
         title={<>Off-site space that works as hard as you do<span style={{ color: 'var(--gold-500)' }}>.</span></>}
-        sub="Stock, equipment, documents and archives — stored securely in Kesiman Kertalangu, ready when you need it. Flexible terms, built for growing businesses."
+        sub="Stock, equipment, documents and archives - stored securely in Kesiman Kertalangu, ready when you need it. Flexible terms, built for growing businesses."
         primary={window.StowKit.ctaLabel(stage)}
       />
       <Section pad="88px 32px">
@@ -220,7 +220,7 @@ function Business({ stage }) {
 const UNITS = [
   { name: 'Locker', size: '~1 m²', use: 'A few boxes, bags, documents', rate: 'Rp 350k' },
   { name: 'Small', size: '~4 m²', use: 'One room of furniture, ~studio', rate: 'Rp 900k' },
-  { name: 'Medium', size: '~9 m²', use: '1–2 bedrooms, business stock', rate: 'Rp 1.7M' },
+  { name: 'Medium', size: '~9 m²', use: '1-2 bedrooms, business stock', rate: 'Rp 1.7M' },
   { name: 'Large', size: '~15 m²', use: 'Full household, bulk inventory', rate: 'Rp 2.8M' },
   { name: 'Extra large', size: '~25 m²', use: 'Whole home + vehicle-scale goods', rate: 'Rp 4.2M' },
 ];
@@ -239,7 +239,7 @@ function Pricing({ stage, showRates }) {
       <Section pad="72px 32px 40px">
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '9px 16px', borderRadius: 999, background: 'var(--warning-wash)', border: '1px solid var(--gold-300)', marginBottom: 28 }}>
           <Icon name="clock" size={16} color="var(--gold-700)" />
-          <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 13.5, color: 'var(--gold-700)' }}>Sizes &amp; rates shown are indicative — final numbers confirmed at launch (v6 model).</span>
+          <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 13.5, color: 'var(--gold-700)' }}>Sizes &amp; rates shown are indicative - final numbers confirmed at launch.</span>
         </div>
         <div className="stow-price-table-wrap" style={{ overflowX: 'auto' }}>
           <table className="stow-price-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
@@ -324,7 +324,7 @@ function HowItWorks({ stage }) {
       <Section bg="var(--cream-050)" bordered pad="80px 32px">
         <SectionHead eyebrow="Included" title="What you get with every unit." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '18px 48px', marginTop: 36, maxWidth: 900 }} className="stow-2col">
-          {['A clean, secure, insulated and ventilated unit', '【SECURITY_SPEC】 and individual access', 'Month-to-month terms — no long lock-in', 'Help sizing, moving in, and switching units as your needs change'].map((t) => (
+          {['A clean, secure, insulated and ventilated unit', '【SECURITY_SPEC】 and individual access', 'Month-to-month terms - no long lock-in', 'Help sizing, moving in, and switching units as your needs change'].map((t) => (
             <div key={t} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
               <div style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 9, background: 'var(--indigo-050)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}><Icon name="check" size={17} color="var(--indigo-600)" stroke={2.5} /></div>
               <p style={{ ...bodyStyle(16.5, 'var(--ink-800)'), fontWeight: 500 }}>{t}</p>

@@ -1,4 +1,4 @@
-/* STOW website — router + gate. Mounted as the visible root by the DC.
+/* STOW website - router + gate. Mounted as the visible root by the DC.
    Waits for the DS bundle + kit + pages, then renders Header / page / Footer
    driven by the URL hash. Exports window.SiteApp. */
 
@@ -43,7 +43,7 @@ function SiteRouter({ stage, showRates }) {
         <Page stage={stage} showRates={showRates} />
       </main>
       <Footer stage={stage} />
-      {WhatsAppFab ? <WhatsAppFab /> : null}
+      <WhatsAppFab />
     </div>
   );
 }
