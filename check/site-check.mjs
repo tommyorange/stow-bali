@@ -167,11 +167,16 @@ page.on('console', (m) => {
   if (m.type() === 'error') consoleErrors.push(m.text());
 });
 page.on('pageerror', (e) => consoleErrors.push(`pageerror: ${e.message}`));
+/* Analytics BEACON endpoints are expected to fail in headless/CI environments
+   and say nothing about the site. Measured on the first live CI run:
+   googletagmanager.com/td fails every time. Filtering these keeps the daily
+   run clean - a check that warns forever just teaches you to ignore warnings.
+   Note this filters beacons ONLY. The gtag/js script itself is still checked,
+   explicitly, in section 2. */
+const BEACON = /google-analytics\.com|analytics\.google\.com|\/g\/collect|googletagmanager\.com\/(td|a)\b/;
 page.on('requestfailed', (r) => {
   const u = r.url();
-  // Beacons and analytics collect endpoints are noisy and expected to fail
-  // in sandboxed/CI environments. They are checked separately.
-  if (!/google-analytics\.com|analytics\.google\.com|\/g\/collect/.test(u)) {
+  if (!BEACON.test(u)) {
     failedRequests.push(`${u} (${r.failure()?.errorText || 'failed'})`);
   }
 });
