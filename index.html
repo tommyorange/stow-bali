@@ -13,7 +13,7 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>STOW Self Storage — Storage in Bali, done properly</title>
+<title>STOW Self Storage - Storage in Bali, done properly</title>
 <meta name="description" content="Clean, secure, insulated and ventilated storage units for your home and business in Kesiman Kertalangu, Bali. Join the waitlist." />
 <link rel="canonical" href="https://stowbali.com/" />
 
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://stowbali.com/" />
 <meta property="og:site_name" content="STOW Self Storage" />
-<meta property="og:title" content="STOW Self Storage — Bali" />
+<meta property="og:title" content="STOW Self Storage - Bali" />
 <meta property="og:description" content="Store it. Done. Clean, secure, insulated units in Kesiman Kertalangu. Join the waitlist." />
 <meta property="og:image" content="https://stowbali.com/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +51,7 @@
     .stow-price-cards { display: flex !important; }
   }
 
-  /* Boot splash — visible until React fills #root. Pure CSS, no JS dependency. */
+  /* Boot splash - visible until React fills #root. Pure CSS, no JS dependency. */
   #stow-boot {
     position: fixed; inset: 0; z-index: 999; background: #F3EEE1;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
@@ -85,7 +85,7 @@
     <rect x="11" y="29" width="26" height="6" rx="3" fill="#F3EEE1" />
   </svg>
   <div id="stow-boot-slow">
-    <p>Still loading — this can take a moment on a slow connection.</p>
+    <p>Still loading - this can take a moment on a slow connection.</p>
     <button type="button" onclick="location.reload()">Reload</button>
   </div>
 </div>
@@ -97,13 +97,13 @@
 
 <!--
   Boot loader. Three jobs:
-   1. Production React (≈8x smaller than the dev build), no SRI — mobile
+   1. Production React (≈8x smaller than the dev build), no SRI - mobile
       carriers in ID transcode script responses, which silently fails
       integrity checks and leaves a permanently blank page.
    2. Every dependency falls back to a second CDN, then a third.
    3. The JSX is fetched and transpiled explicitly. Babel's own
       transformScriptTags() skips src'd <script type="text/babel"> tags when
-      Babel itself arrives after DOMContentLoaded — which is exactly what
+      Babel itself arrives after DOMContentLoaded - which is exactly what
       happens on a slow mobile connection.
 -->
 <script>
@@ -125,7 +125,7 @@
     { paths: ['@babel/standalone@7.29.0/babel.min.js',
               '@babel/standalone@7.29.0/babel.min.js',
               'babel-standalone/6.26.0/babel.min.js'],
-      ready: function () { return !!(window.Babel && window.Babel.transform); } }
+      ready: function () { return !!(window.Babel && window.Babel.transformScriptTags); } }
   ];
 
   var boot = document.getElementById('stow-boot');

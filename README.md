@@ -1,6 +1,6 @@
-# STOW Self Storage — static site (for Claude Cowork)
+# STOW Self Storage - static site (for Claude Cowork)
 
-This folder is a **complete, deployable static site**. No build step required —
+This folder is a **complete, deployable static site**. No build step required -
 push it to GitHub and point Vercel (or Netlify / GitHub Pages) at it.
 
 ## Deploy
@@ -8,41 +8,41 @@ push it to GitHub and point Vercel (or Netlify / GitHub Pages) at it.
 - **Vercel:** import the repo, framework preset "Other", no build command,
   output directory = this folder. Done.
 - Routing is client-side via URL hashes (`#/pricing`, `#/contact`, …), so no
-  server rewrites/redirect config is needed — every route works from
+  server rewrites/redirect config is needed - every route works from
   `index.html`.
 
 ## Before / after going live
 
-1. **`site-config.js`** — fill in the real values (open date, hours, address,
+1. **`site-config.js`** - fill in the real values (open date, hours, address,
    WhatsApp, email, phone, security spec). Keys left `null` show as visible
    `【KEY】` placeholders on the page, so it's obvious what's missing.
-2. **`index.html`** — replace `https://REPLACE-WITH-DOMAIN` in the `og:image`
+2. **`index.html`** - replace `https://REPLACE-WITH-DOMAIN` in the `og:image`
    meta tag with the real domain (social previews need an absolute URL).
-3. **Waitlist form** — the form in `SiteKit.jsx` (`WaitlistForm`) currently
+3. **Waitlist form** - the form in `SiteKit.jsx` (`WaitlistForm`) currently
    only simulates submission. Wire it to a real endpoint (Formspree, a Vercel
    serverless function, or the team's CRM).
-4. **Fonts** — currently loaded from Google Fonts via `tokens/fonts.css`.
+4. **Fonts** - currently loaded from Google Fonts via `tokens/fonts.css`.
    A separate task brief exists to self-host them ("Font Self-Hosting
-   Handoff") — apply it in this folder's `tokens/fonts.css`.
+   Handoff") - apply it in this folder's `tokens/fonts.css`.
 
 ## What's in here
 
-- `index.html` — entry point; head metadata, favicons, responsive CSS
-- `SiteKit.jsx` / `SitePages.jsx` / `SitePages2.jsx` / `SiteApp.jsx` — the site
+- `index.html` - entry point; head metadata, favicons, responsive CSS
+- `SiteKit.jsx` / `SitePages.jsx` / `SitePages2.jsx` / `SiteApp.jsx` - the site
   (React, JSX transpiled in the browser by Babel standalone)
-- `site-config.js` — launch facts, one file to edit
-- `styles.css` + `tokens/` — the STOW design tokens (colors, type, spacing…)
-- `_ds_bundle.js` — compiled STOW component library (Button, Card, Modal, …)
-- `assets/` — hero render, favicons, app icons, OG share image
+- `site-config.js` - launch facts, one file to edit
+- `styles.css` + `tokens/` - the STOW design tokens (colors, type, spacing…)
+- `_ds_bundle.js` - compiled STOW component library (Button, Card, Modal, …)
+- `assets/` - hero render, favicons, app icons, OG share image
 
 ## Known architecture caveat (fine for launch, improve later)
 
-JSX is transpiled **in the browser** and React is the development build —
+JSX is transpiled **in the browser** and React is the development build -
 simple and dependency-free, but it costs ~1s of extra load time and the pages
 are client-rendered (weaker SEO). When there's time, precompile: run the four
 `.jsx` files through Babel once at build time, switch the React CDN scripts to
 `react.production.min.js` / `react-dom.production.min.js`, and drop Babel
-standalone. No code changes needed — the files are plain React without any
+standalone. No code changes needed - the files are plain React without any
 bundler-specific imports.
 
 ## Brand rules (do not "improve" these)
@@ -52,3 +52,9 @@ bundler-specific imports.
 - Display type = Archivo 800, `font-stretch: 112%`, uppercase. Do not fake the
   width with transforms.
 - No gradients, no emoji, no green as a brand color.
+- **No em dashes and no en dashes anywhere**, in any language, including code
+  comments. English and Indonesian use a spaced hyphen " - "; numeric ranges
+  use a tight hyphen (`1-3 months`). Japanese never substitutes a hyphen -
+  restructure the sentence instead. Never touch 〜 (U+301C), ー (U+30FC,
+  the katakana prolonged sound mark) or ・ (U+30FB): these are not dashes,
+  and any dash-like character class that includes them corrupts the Japanese.
