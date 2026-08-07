@@ -1,5 +1,5 @@
 /* ============================================================
-   STOW site translations — EN (source) → ID / JP.
+   STOW site translations - EN (source) → ID / JP.
    Covers the high-traffic pages (Home, Units & Pricing, Contact)
    plus site chrome (nav, CTA band, waitlist form, footer).
    Untranslated strings intentionally remain English.
@@ -29,7 +29,7 @@ window.StowI18N = (() => {
     'Terms': { ID: 'Ketentuan', JP: '利用規約' },
     'Storage': { ID: 'Penyimpanan', JP: 'ストレージ' },
     'Contact': { ID: 'Kontak', JP: 'お問い合わせ' },
-    'Clean, secure, insulated self storage — built for Kesiman Kertalangu, Bali.': { ID: 'Self storage bersih, aman, berinsulasi — dibangun untuk Kesiman Kertalangu, Bali.', JP: '清潔・安全・断熱のセルフストレージ。Kesiman Kertalangu, Bali.' },
+    'Clean, secure, insulated self storage - built for Kesiman Kertalangu, Bali.': { ID: 'Self storage bersih, aman, berinsulasi - dibangun untuk Kesiman Kertalangu, Bali.', JP: '清潔・安全・断熱のセルフストレージ。Kesiman Kertalangu, Bali.' },
 
     /* ---- CTA band (site-wide) ---- */
     'Store it. Sorted': { ID: 'Simpan. Beres', JP: '預けて、スッキリ' },
@@ -39,7 +39,7 @@ window.StowI18N = (() => {
     'Opening 【OPEN_DATE】 · Kesiman Kertalangu, Bali': { ID: 'Buka 【OPEN_DATE】 · Kesiman Kertalangu, Bali', JP: '【OPEN_DATE】オープン · Kesiman Kertalangu, Bali' },
     'Storage in Bali,': { ID: 'Penyimpanan di Bali,', JP: 'バリの収納を、' },
     'done properly': { ID: 'dengan cara yang benar', JP: 'きちんと' },
-    'Clean, secure, insulated and ventilated units for your home and your business — in Kesiman Kertalangu. We open 【OPEN_DATE】. Join the waitlist today.': { ID: 'Unit bersih, aman, berinsulasi dan berventilasi untuk rumah dan bisnis Anda — di Kesiman Kertalangu. Kami buka 【OPEN_DATE】. Gabung daftar tunggu sekarang.', JP: 'ご家庭にもビジネスにも。清潔で安全、断熱・換気完備のユニットを Kesiman Kertalangu でご用意。【OPEN_DATE】オープン。今すぐウェイトリストへ。' },
+    'Clean, secure, insulated and ventilated units for your home and your business - in Kesiman Kertalangu. We open 【OPEN_DATE】. Join the waitlist today.': { ID: 'Unit bersih, aman, berinsulasi dan berventilasi untuk rumah dan bisnis Anda - di Kesiman Kertalangu. Kami buka 【OPEN_DATE】. Gabung daftar tunggu sekarang.', JP: 'ご家庭にもビジネスにも。清潔で安全、断熱・換気完備のユニットを Kesiman Kertalangu でご用意。【OPEN_DATE】オープン。今すぐウェイトリストへ。' },
     'Opening 【OPEN_DATE】': { ID: 'Buka 【OPEN_DATE】', JP: '【OPEN_DATE】オープン' },
     'Two paths, equal weight': { ID: 'Dua pilihan, sama pentingnya', JP: '2つの使い方' },
     'What are you storing?': { ID: 'Apa yang ingin Anda simpan?', JP: '何を保管しますか？' },
@@ -49,7 +49,7 @@ window.StowI18N = (() => {
     'Business storage': { ID: 'Penyimpanan bisnis', JP: '法人向けストレージ' },
     'Why STOW': { ID: 'Kenapa STOW', JP: 'STOWが選ばれる理由' },
     'Storage you can actually trust.': { ID: 'Penyimpanan yang benar-benar bisa dipercaya.', JP: '本当に信頼できる収納を。' },
-    'Bali is hard on stored belongings — humidity, heat, damp. STOW is built to protect against all three.': { ID: 'Bali keras terhadap barang simpanan — lembap, panas, basah. STOW dibangun untuk melindungi dari ketiganya.', JP: '湿気、暑さ、カビ——バリの気候は保管物の大敵です。STOWはその全てから守るために作られました。' },
+    'Bali is hard on stored belongings - humidity, heat, damp. STOW is built to protect against all three.': { ID: 'Bali keras terhadap barang simpanan - lembap, panas, basah. STOW dibangun untuk melindungi dari ketiganya.', JP: '湿気、暑さ、カビ。バリの気候は保管物の大敵です。STOWはその全てから守るために作られました。' },
     'How it works': { ID: 'Cara kerjanya', JP: 'ご利用の流れ' },
     'Three steps.': { ID: 'Tiga langkah.', JP: '3ステップ。' },
     'Pick your size': { ID: 'Pilih ukuran', JP: 'サイズを選ぶ' },
@@ -61,21 +61,21 @@ window.StowI18N = (() => {
     'See how it works': { ID: 'Lihat cara kerjanya', JP: '流れを見る' },
     'Pricing': { ID: 'Harga', JP: '料金' },
     'Clear pricing. No surprises.': { ID: 'Harga jelas. Tanpa kejutan.', JP: '明朗会計。追加費用なし。' },
-    'Units from lockers up to whole-home rooms. One monthly rate, everything included.': { ID: 'Dari loker hingga unit sebesar rumah. Satu tarif bulanan, semua termasuk.', JP: 'ロッカーから一軒家サイズまで。月額一律、すべて込み。' },
+    'Units from lockers up to whole-home rooms. One monthly rate, everything included.': { ID: 'Dari loker hingga unit sebesar rumah. Satu tarif bulanan, semua termasuk.', JP: 'ロッカーから一軍家サイズまで。月額一律、すべて込み。' },
     'We open 【OPEN_DATE】. Be first in.': { ID: 'Kami buka 【OPEN_DATE】. Jadilah yang pertama.', JP: '【OPEN_DATE】オープン。最初の一人に。' },
 
     /* ---- trust row ---- */
     'Insulated & ventilated': { ID: 'Berinsulasi & berventilasi', JP: '断熱・換気完備' },
-    'Insulated units with built-in ventilation — airflow keeps damp, musty air and heat from settling on your things.': { ID: 'Unit berinsulasi dengan ventilasi bawaan — aliran udara mencegah lembap dan panas menempel pada barang Anda.', JP: '断熱材と換気口を備えたユニット。空気の流れが湿気やこもった熱から荷物を守ります。' },
+    'Insulated units with built-in ventilation - airflow keeps damp, musty air and heat from settling on your things.': { ID: 'Unit berinsulasi dengan ventilasi bawaan - aliran udara mencegah lembap dan panas menempel pada barang Anda.', JP: '断熱材と換気口を備えたユニット。空気の流れが湿気やこもった熱から荷物を守ります。' },
     'Secure': { ID: 'Aman', JP: '安心のセキュリティ' },
-    '【SECURITY_SPEC】 monitored access, so only you reach your unit.': { ID: '【SECURITY_SPEC】 dengan akses terpantau — hanya Anda yang bisa membuka unit Anda.', JP: '【SECURITY_SPEC】と入退室管理で、ユニットに入れるのはあなただけ。' },
+    '【SECURITY_SPEC】 monitored access, so only you reach your unit.': { ID: '【SECURITY_SPEC】 dengan akses terpantau - hanya Anda yang bisa membuka unit Anda.', JP: '【SECURITY_SPEC】と入退室管理で、ユニットに入れるのはあなただけ。' },
     'Clean & modern': { ID: 'Bersih & modern', JP: '清潔でモダン' },
     'A brand-new facility, not a converted warehouse.': { ID: 'Fasilitas baru, bukan gudang bekas.', JP: '倉庫の転用ではない、新築の専用施設。' },
     'Flexible': { ID: 'Fleksibel', JP: '柔軟な契約' },
     'Month to month. Scale up or down when your needs change.': { ID: 'Bulanan. Tambah atau kurangi sesuai kebutuhan.', JP: '月単位の契約。必要に応じてサイズ変更も自由。' },
 
     /* ---- waitlist band + form ---- */
-    'We open 【OPEN_DATE】. Join the waitlist and we\'ll contact you before we release units to the public — with your size options and your rate.': { ID: 'Kami buka 【OPEN_DATE】. Gabung daftar tunggu dan kami hubungi Anda sebelum unit dirilis ke publik — lengkap dengan pilihan ukuran dan tarif Anda.', JP: '【OPEN_DATE】オープン。ウェイトリストにご登録いただくと、一般公開前にサイズと料金をご案内します。' },
+    'We open 【OPEN_DATE】. Join the waitlist and we\'ll contact you before we release units to the public - with your size options and your rate.': { ID: 'Kami buka 【OPEN_DATE】. Gabung daftar tunggu dan kami hubungi Anda sebelum unit dirilis ke publik - lengkap dengan pilihan ukuran dan tarif Anda.', JP: '【OPEN_DATE】オープン。ウェイトリストにご登録いただくと、一般公開前にサイズと料金をご案内します。' },
     'Be first in line.': { ID: 'Jadilah yang pertama.', JP: '最初の一人に。' },
     'Name': { ID: 'Nama', JP: 'お名前' },
     'Email': { ID: 'Email', JP: 'メール' },
@@ -84,7 +84,7 @@ window.StowI18N = (() => {
     'I need storage for': { ID: 'Saya butuh penyimpanan untuk', JP: '利用目的' },
     'Roughly when': { ID: 'Kira-kira kapan', JP: '利用時期' },
     'Within 1 month': { ID: 'Dalam 1 bulan', JP: '1ヶ月以内' },
-    '1–3 months': { ID: '1–3 bulan', JP: '1〜3ヶ月' },
+    '1-3 months': { ID: '1-3 bulan', JP: '1〜3ヶ月' },
     'Just exploring': { ID: 'Masih lihat-lihat', JP: '検討中' },
     'Optional, one line': { ID: 'Opsional, satu baris', JP: '任意・一行で' },
     'No payment now. No obligation. We\'ll only contact you about STOW.': { ID: 'Tanpa pembayaran sekarang. Tanpa kewajiban. Kami hanya menghubungi Anda soal STOW.', JP: 'お支払いは不要、義務もありません。STOWに関するご連絡のみ行います。' },
@@ -97,7 +97,7 @@ window.StowI18N = (() => {
     'Everything included': { ID: 'Semua termasuk', JP: 'すべて込み' },
     'No setup fees, no admin surprises. Pick the size that fits and pay one clear monthly price.': { ID: 'Tanpa biaya pemasangan, tanpa kejutan admin. Pilih ukuran yang pas dan bayar satu harga bulanan yang jelas.', JP: '初期費用や事務手数料なし。ぴったりのサイズを選んで、明確な月額料金だけ。' },
     'Get a size recommendation': { ID: 'Minta rekomendasi ukuran', JP: 'サイズ相談をする' },
-    'Sizes & rates shown are indicative — final numbers confirmed at launch (v6 model).': { ID: 'Ukuran & tarif bersifat indikatif — angka final dikonfirmasi saat peluncuran (model v6).', JP: '表示のサイズ・料金は目安です。正式な金額はオープン時に確定します（v6モデル）。' },
+    'Sizes & rates shown are indicative - final numbers confirmed at launch.': { ID: 'Ukuran & tarif bersifat indikatif - angka final dikonfirmasi saat peluncuran.', JP: '表示のサイズ・料金は目安です。正式な金額はオープン時に確定します。' },
     'Unit': { ID: 'Unit', JP: 'ユニット' },
     'Size': { ID: 'Ukuran', JP: 'サイズ' },
     'Good for': { ID: 'Cocok untuk', JP: '用途' },
@@ -109,9 +109,9 @@ window.StowI18N = (() => {
     'Extra large': { ID: 'Ekstra besar', JP: '特大' },
     'A few boxes, bags, documents': { ID: 'Beberapa kotak, tas, dokumen', JP: '箱数個、バッグ、書類' },
     'One room of furniture, ~studio': { ID: 'Perabot satu kamar, ~studio', JP: '1部屋分の家具（スタジオ程度）' },
-    '1–2 bedrooms, business stock': { ID: '1–2 kamar tidur, stok bisnis', JP: '1〜2寝室分、事業在庫' },
-    'Full household, bulk inventory': { ID: 'Seisi rumah, inventaris besar', JP: '一軒分の家財、大量在庫' },
-    'Whole home + vehicle-scale goods': { ID: 'Seluruh rumah + barang seukuran kendaraan', JP: '家一軒分＋大型品' },
+    '1-2 bedrooms, business stock': { ID: '1-2 kamar tidur, stok bisnis', JP: '1〜2寝室分、事業在庫' },
+    'Full household, bulk inventory': { ID: 'Seisi rumah, inventaris besar', JP: '一軍分の家財、大量在庫' },
+    'Whole home + vehicle-scale goods': { ID: 'Seluruh rumah + barang seukuran kendaraan', JP: '家一軍分＋大型品' },
     ' /mo': { ID: '/bln', JP: '/月' },
     'Enquire': { ID: 'Tanya', JP: '問い合わせ' },
     'All rates are monthly, billed in IDR.': { ID: 'Semua tarif bulanan, ditagih dalam IDR.', JP: '料金はすべて月額、IDR建てです。' },
@@ -119,7 +119,7 @@ window.StowI18N = (() => {
     'Minimum term: 1 month. No long lock-in.': { ID: 'Minimal 1 bulan. Tanpa kontrak panjang.', JP: '最低契約は1ヶ月。長期縛りなし。' },
     'Size guide': { ID: 'Panduan ukuran', JP: 'サイズガイド' },
     'Not sure what you need?': { ID: 'Belum yakin butuh yang mana?', JP: 'どのサイズか迷ったら' },
-    'A quick guide. A Locker holds what fits in a car boot. A Small unit takes a studio\'s worth of furniture. A Medium fits one to two bedrooms. Large and Extra large hold a full house. Tell us what you\'re storing and we\'ll confirm the fit before you commit.': { ID: 'Panduan singkat. Loker memuat isi bagasi mobil. Unit Kecil memuat perabot studio. Sedang untuk 1–2 kamar. Besar dan Ekstra besar memuat seisi rumah. Beri tahu kami apa yang Anda simpan dan kami pastikan ukurannya sebelum Anda berkomitmen.', JP: 'かんたんガイド：ロッカーは車のトランク程度、小はスタジオ1部屋分の家具、中は1〜2寝室分、大・特大は家一軒分。保管する物を教えていただければ、契約前にぴったりのサイズをご案内します。' },
+    'A quick guide. A Locker holds what fits in a car boot. A Small unit takes a studio\'s worth of furniture. A Medium fits one to two bedrooms. Large and Extra large hold a full house. Tell us what you\'re storing and we\'ll confirm the fit before you commit.': { ID: 'Panduan singkat. Loker memuat isi bagasi mobil. Unit Kecil memuat perabot studio. Sedang untuk 1-2 kamar. Besar dan Ekstra besar memuat seisi rumah. Beri tahu kami apa yang Anda simpan dan kami pastikan ukurannya sebelum Anda berkomitmen.', JP: 'かんたんガイド：ロッカーは車のトランク程度、小はスタジオ1部屋分の家具、中は1〜2寝室分、大・特大は家一軍分。保管する物を教えていただければ、契約前にぴったりのサイズをご案内します。' },
 
     /* ---- Contact page ---- */
     'Contact · Join the waitlist': { ID: 'Kontak · Gabung daftar tunggu', JP: 'お問い合わせ · ウェイトリスト' },
@@ -137,19 +137,27 @@ window.StowI18N = (() => {
   };
 
   const LANGS = ['EN', 'ID', 'JP'];
-  const info = new WeakMap(); // text node -> { en: English source, cur: value we last set }
+  const info = new WeakMap(); // text node -> { en: raw English source, cur: value we last set }
   let lang = 'EN';
   try { lang = localStorage.getItem('stow_lang') || 'EN'; } catch (e) {}
   if (!LANGS.includes(lang)) lang = 'EN';
 
+  /* Order is fixed and must stay that way: translate the RAW string (which
+     still carries its 【KEY】 markers, so it matches the dictionary key and the
+     JSX literal verbatim), THEN fill the markers. Filling first would leave
+     "We open soon." on the node, match no key, and pin those strings to
+     English forever. */
+  const fill = (s) => (window.StowFill ? window.StowFill.text(s, lang) : s);
+
   const xlate = (node) => {
     const val = node.nodeValue;
     let rec = info.get(node);
-    if (rec && val !== rec.cur) { info.delete(node); rec = null; } // externally changed (React/config) — re-key
+    if (rec && val !== rec.cur) { info.delete(node); rec = null; } // externally changed (React) - re-key
     const en = rec ? rec.en : val;
     const entry = D[en];
-    if (!entry) return;
-    const out = lang === 'EN' ? en : (entry[lang] || en);
+    if (!entry && (!en || en.indexOf('【') === -1)) return;
+    const base = entry ? (lang === 'EN' ? en : (entry[lang] || en)) : en;
+    const out = fill(base);
     info.set(node, { en, cur: out });
     if (val !== out) node.nodeValue = out;
   };

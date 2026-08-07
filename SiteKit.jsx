@@ -1,4 +1,4 @@
-/* STOW website — shared kit: primitives + chrome (header, footer, CTA band, waitlist form).
+/* STOW website - shared kit: primitives + chrome (header, footer, CTA band, waitlist form).
    Attaches window.StowKit. Loaded via a hidden x-import (StowKitLoader). */
 const _DS = () => window.STOWSelfStorageDesignSystem_6ffa12 || {};
 const _mk = (n) => (props) => React.createElement(_DS()[n] || 'div', props);
@@ -39,7 +39,7 @@ function SMark({ size = 38 }) {
 }
 function Wordmark({ size = 26, color = 'var(--ink-900)', dot = 'var(--gold-600)' }) {
   return (
-    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontStretch: '112%', letterSpacing: '-0.03em', textTransform: 'uppercase', fontSize: size, lineHeight: 1, color }}>
+    <span data-stow-lockup style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontStretch: '112%', letterSpacing: '-0.03em', textTransform: 'uppercase', fontSize: size, lineHeight: 1, color }}>
       Stow<span style={{ color: dot }}>.</span>
     </span>
   );
@@ -118,7 +118,7 @@ function FacilityImage({ src = PHOTOS.hero, caption = 'Kesiman Kertalangu · Den
   const { Badge } = window.StowKit;
   return (
     <div style={{ position: 'relative', borderRadius: radius, overflow: 'hidden', boxShadow: 'var(--shadow-lg)', ...style }}>
-      <img src={src} alt="STOW Self Storage facility at dusk — Kesiman Kertalangu, Bali" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+      <img src={src} alt="STOW Self Storage facility at dusk - Kesiman Kertalangu, Bali" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '22px 22px 18px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, background: 'linear-gradient(to top, rgba(12,20,48,0.88), rgba(12,20,48,0.0))' }}>
         <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--cream-100)' }}>{caption}</span>
         <Badge tone="accent" solid>{badge}</Badge>
@@ -133,7 +133,7 @@ Object.assign(window, {
 
 /* ---- Trust row (4 items) ---- */
 const TRUST = [
-  { icon: 'climate', t: 'Insulated & ventilated', d: 'Insulated units with built-in ventilation — airflow keeps damp, musty air and heat from settling on your things.' },
+  { icon: 'climate', t: 'Insulated & ventilated', d: 'Insulated units with built-in ventilation - airflow keeps damp, musty air and heat from settling on your things.' },
   { icon: 'secure', t: 'Secure', d: '【SECURITY_SPEC】 monitored access, so only you reach your unit.' },
   { icon: 'clean', t: 'Clean & modern', d: 'A brand-new facility, not a converted warehouse.' },
   { icon: 'flexible', t: 'Flexible', d: 'Month to month. Scale up or down when your needs change.' },
@@ -155,7 +155,7 @@ function TrustRow({ onDark = false }) {
   );
 }
 
-/* ---- Language switcher (EN / ID / JP) — UI only, persists choice ---- */
+/* ---- Language switcher (EN / ID / JP) - UI only, persists choice ---- */
 function LangSwitcher({ onDark = false }) {
   const [lang, setLang] = React.useState(() => { try { return localStorage.getItem('stow_lang') || 'EN'; } catch (e) { return 'EN'; } });
   const pick = (l) => {
@@ -294,7 +294,7 @@ function WaitlistForm({ stage = 'waitlist' }) {
         <div>
           <span style={fieldLabel}>Roughly when</span>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {['Within 1 month', '1–3 months', 'Just exploring'].map((v) => (
+            {['Within 1 month', '1-3 months', 'Just exploring'].map((v) => (
               <div key={v} onClick={() => setWhen(v)} style={{ cursor: 'pointer', borderRadius: 999, padding: '8px 15px', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 13, border: `1.5px solid ${when === v ? 'var(--indigo-500)' : 'var(--border)'}`, background: when === v ? 'var(--indigo-050)' : 'var(--white)', color: when === v ? 'var(--indigo-600)' : 'var(--ink-600)', transition: 'all var(--dur) var(--ease)' }}>{v}</div>
             ))}
           </div>
@@ -316,7 +316,7 @@ function WaitlistBand({ stage = 'waitlist', heading = 'Be first in line.', bg = 
         <div>
           <Eyebrow>Join the waitlist</Eyebrow>
           <h2 style={{ ...display('clamp(36px,4vw,52px)'), marginTop: 12 }}>{heading}</h2>
-          <p style={{ ...bodyStyle(18), marginTop: 16, maxWidth: '42ch' }}>We open 【OPEN_DATE】. Join the waitlist and we'll contact you before we release units to the public — with your size options and your rate.</p>
+          <p style={{ ...bodyStyle(18), marginTop: 16, maxWidth: '42ch' }}>We open 【OPEN_DATE】. Join the waitlist and we'll contact you before we release units to the public - with your size options and your rate.</p>
         </div>
         <WaitlistForm stage={stage} />
       </div>
@@ -335,6 +335,10 @@ function Footer({ stage = 'waitlist' }) {
       </div>
     </div>
   );
+  /* Footer contact anchors: tappable on mobile, visually identical to the
+     plain text they replace. Values come from window.StowContact (site-config.js),
+     the same object the Contact page uses. */
+  const contactLink = { color: 'inherit', textDecoration: 'none' };
   return (
     <footer style={{ background: 'var(--indigo-900)', color: 'var(--cream-100)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 32px 40px', display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1.3fr', gap: 40 }} className="stow-footer-grid">
@@ -342,14 +346,17 @@ function Footer({ stage = 'waitlist' }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
             <SMark size={34} /><Wordmark size={22} color="var(--cream-100)" dot="var(--gold-500)" />
           </div>
-          <p style={{ ...bodyStyle(14, 'rgba(243,238,225,0.6)'), maxWidth: '30ch' }}>Clean, secure, insulated self storage — built for Kesiman Kertalangu, Bali.</p>
+          <p style={{ ...bodyStyle(14, 'rgba(243,238,225,0.6)'), maxWidth: '30ch' }}>Clean, secure, insulated self storage - built for Kesiman Kertalangu, Bali.</p>
         </div>
         {col('Storage', [{ label: 'Personal Storage', route: '#/personal' }, { label: 'Business Storage', route: '#/business' }, { label: 'Units & Pricing', route: '#/pricing' }, { label: 'How It Works', route: '#/how-it-works' }])}
         {col('Facility', [{ label: 'Facility & Location', route: '#/facility' }, { label: 'FAQ', route: '#/faq' }, { label: 'About', route: '#/about' }])}
         <div>
           <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 11.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-300)', marginBottom: 16 }}>Contact</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, ...bodyStyle(14, 'rgba(243,238,225,0.72)') }}>
-            <span>【ADDRESS】</span><span>WhatsApp / phone 【WHATSAPP】</span><span>【EMAIL】</span><span>【HOURS】</span>
+            <span>【ADDRESS】</span>
+            <span>WhatsApp / phone <a href={(window.StowContact || {}).TEL} style={contactLink}>【WHATSAPP】</a></span>
+            <span><a href={(window.StowContact || {}).MAILTO} style={contactLink}>【EMAIL】</a></span>
+            <span>【HOURS】</span>
           </div>
           <div style={{ marginTop: 18 }}><Button variant="gold" size="sm" onClick={() => go('#/contact')}>{ctaLabel(stage)}</Button></div>
           <div style={{ marginTop: 16 }}><LangSwitcher onDark /></div>
@@ -392,7 +399,7 @@ function WhatsAppFab() {
       raf = 0;
       const gap = 16;
       const off = 20;
-      /* Resting box from the fixed offsets, NOT getBoundingClientRect — that rect
+      /* Resting box from the fixed offsets, NOT getBoundingClientRect - that rect
          already includes the current lift and would feed back on itself. */
       const rest = {
         right: innerWidth - off, left: innerWidth - off - SIZE,
