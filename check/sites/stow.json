@@ -16,7 +16,15 @@
   "expectOgImage": "https://stowbali.com/assets/og-image.png",
   "expectOgSiteName": "STOW Self Storage",
 
-  "forbiddenStrings": ["REPLACE-WITH-DOMAIN", "TODO:", "lorem ipsum"],
+  "_forbiddenStrings_why": "The three 【KEY】 tokens listed here always resolve - WHATSAPP and EMAIL have values in site-config.js, OPEN_DATE has a per-language fallback. A raw one on the page means the token filler is broken. This exact failure shipped on 2026-08-07 when site-config.js landed without translations.js: the page rendered fine and every check passed while showing placeholder junk. ADDRESS, HOURS and SECURITY_SPEC are deliberately absent - those are still null and are MEANT to be visible.",
+  "forbiddenStrings": [
+    "REPLACE-WITH-DOMAIN",
+    "TODO:",
+    "lorem ipsum",
+    "【WHATSAPP】",
+    "【EMAIL】",
+    "【OPEN_DATE】"
+  ],
 
   "selfHostedFonts": [
     "/fonts/archivo/archivo-normal-latin.woff2",
@@ -30,9 +38,8 @@
   "expectFontWeight": "400 900",
   "expectFontStretch": "62% 125%",
 
-  "expectFontFamilies": ["Archivo"],
-  "_warnFontFamilies_why": "Noto Sans JP is NOT loading. The @import in tokens/fonts.css sits after the @font-face blocks; CSS requires @import first, so browsers drop it. Fix in the STOW Website PROD Design project by moving that @import to the very top of the file, then move 'Noto Sans JP' from warnFontFamilies into expectFontFamilies so it can never regress again.",
-  "warnFontFamilies": ["Noto Sans JP"],
+  "expectFontFamilies": ["Archivo", "Noto Sans JP"],
+  "warnFontFamilies": [],
 
   "googleFontsPolicy": "warn",
 
@@ -78,9 +85,8 @@
     "/terms"
   ],
 
-  "_requiredLinks_pending": "The homepage footer prints the phone number and email as PLAIN TEXT, not links, so tel:/mailto: are only listed under /contact. Once the Design project makes the footer contact details clickable, add 'tel:+6287723062026' and 'mailto:hello@stowbali.com' to the '/' entry below.",
   "requiredLinks": {
-    "/": ["wa.me/message/FF4LV225ZEMCN1"],
+    "/": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"],
     "/contact": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"]
   },
 
