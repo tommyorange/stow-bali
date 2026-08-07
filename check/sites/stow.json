@@ -29,6 +29,11 @@
   "expectFontFamily": "Archivo",
   "expectFontWeight": "400 900",
   "expectFontStretch": "62% 125%",
+
+  "expectFontFamilies": ["Archivo"],
+  "_warnFontFamilies_why": "Noto Sans JP is NOT loading. The @import in tokens/fonts.css sits after the @font-face blocks; CSS requires @import first, so browsers drop it. Fix in the STOW Website PROD Design project by moving that @import to the very top of the file, then move 'Noto Sans JP' from warnFontFamilies into expectFontFamilies so it can never regress again.",
+  "warnFontFamilies": ["Noto Sans JP"],
+
   "googleFontsPolicy": "warn",
 
   "assets": [
@@ -73,6 +78,7 @@
     "/terms"
   ],
 
+  "_requiredLinks_pending": "The homepage footer prints the phone number and email as PLAIN TEXT, not links, so tel:/mailto: are only listed under /contact. Once the Design project makes the footer contact details clickable, add 'tel:+6287723062026' and 'mailto:hello@stowbali.com' to the '/' entry below.",
   "requiredLinks": {
     "/": ["wa.me/message/FF4LV225ZEMCN1"],
     "/contact": ["wa.me/message/FF4LV225ZEMCN1", "tel:+6287723062026", "mailto:hello@stowbali.com"]
